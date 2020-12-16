@@ -1,1 +1,49 @@
-/* You can add global styles to this file, and also import other style files */
+.he-100{
+    height: 100vh;
+}
+.bg-purple{
+    background-color: #6351ce;
+}
+
+.b-purple{
+    border-color: #6351ce;
+}
+
+.btn-purple{
+    color: white;
+    background: #6351ce;
+    padding: 8px 0px;
+}
+.he-30{
+    height: 30vh;
+}
+
+.he-40{
+    height: 40vh;
+}
+
+.he-50{
+    height: 50vh;
+}
+
+.rounded-50{
+    border-radius: 1.5em;
+}
+
+.rounded-50l{
+    border-top-left-radius: 1.5em;
+    border-bottom-left-radius: 1.5em;
+}
+
+.rounded-50r{
+    border-top-right-radius: 1.5em;
+    border-bottom-right-radius: 1.5em;
+}
+
+
+input, textarea { 
+	font-family: FontAwesome, "Open Sans", Verdana, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+}

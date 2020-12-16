@@ -1,0 +1,21 @@
+<div class="container col-8 d-flex flex-column justify-content-center align-items-center">
+    <h1>USERS</h1>
+    <table class="col table table-striped table-bordered table-hover table-sm">
+        <thead>
+            <th>ID</th>
+            <th>NOMBRE</th>
+            <th>MAIL</th>
+            <th>NICK</th>
+            <th>EDAD</th>
+        </thead>
+        <tbody>
+            <tr *ngFor='let user of users'>
+                <td>{{user.idUsuario}}</td>
+                <td>{{user.nombre}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.nick}}</td>
+                <td>{{user.edad}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
