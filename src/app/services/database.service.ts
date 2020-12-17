@@ -33,4 +33,8 @@ export class DatabaseService {
     return this.http.put(this.infoEndP + `/${id}`, user);
   }
 
+  borrarUser(user: any): Observable<any>{
+    let id = user.id;
+    return this.http.delete(this.infoEndP + `/${id}`);
+  }
 }

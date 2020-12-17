@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { DatabaseService } from '../../services/database.service';
 import { User } from '../../interfaces/userInterface';
@@ -12,7 +12,8 @@ export class FormularioComponent implements OnInit {
 
 registerForm: FormGroup;
 
-  constructor( private build: FormBuilder, private userService: DatabaseService ) { 
+
+  constructor( private build: FormBuilder, private userService: DatabaseService) { 
     
     this.registerForm = this.build.group({
       id:['', Validators.required],
@@ -22,7 +23,6 @@ registerForm: FormGroup;
       pass: ['', Validators.required], 
       edad: ['', Validators.required],
     })
-
   }
 
   ngOnInit(): void {
@@ -40,6 +40,14 @@ registerForm: FormGroup;
     let userCreated: User;
     userCreated = this.registerForm.value;
     this.userService.modificarUser(this.registerForm.value).subscribe(response => {
+      console.log(response);
+    })
+  }
+
+  borrarUser(): void{
+    let userCreated: User;
+    userCreated = this.registerForm.value;
+    this.userService.borrarUser(this.registerForm.value).subscribe(response => {
       console.log(response);
     })
   }
