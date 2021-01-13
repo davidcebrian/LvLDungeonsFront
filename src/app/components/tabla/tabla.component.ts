@@ -4,7 +4,7 @@ import { DatabaseService } from '../../services/database.service';
 @Component({
   selector: 'tabla',
   templateUrl: './tabla.component.html',
-  styleUrls: ['./tabla.component.css']
+  styleUrls: ['./tabla.component.scss']
 })
 
 @Injectable()

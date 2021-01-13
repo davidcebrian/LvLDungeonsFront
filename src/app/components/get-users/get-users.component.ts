@@ -4,7 +4,7 @@ import { DatabaseService } from '../../services/database.service';
 @Component({
   selector: 'get-users',
   templateUrl: './get-users.component.html',
-  styleUrls: ['./get-users.component.css']
+  styleUrls: ['./get-users.component.scss']
 })
 export class GetUsersComponent implements OnInit {
 
