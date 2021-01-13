@@ -27,6 +27,7 @@ import { FormularioComponent } from './components/formulario/formulario.componen
     TablaComponent,
     FormularioComponent,
     EntidadesComponent
+   
   ],
   imports: [
     BrowserModule,
