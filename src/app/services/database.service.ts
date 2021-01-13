@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 })
 export class DatabaseService {
 
-  private infoEndP = 'http://127.0.0.1:8080/user';
+  private infoEndP = '/user';
 
   constructor( private http: HttpClient) { }
 
