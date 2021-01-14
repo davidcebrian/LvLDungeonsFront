@@ -15,6 +15,7 @@ import { DetallesComponent } from './components/detalles/detalles.component';
 import { TablaComponent } from './components/tabla/tabla.component';
 import { EntidadesComponent } from './components/entidades/entidades.component';
 import { FormularioComponent } from './components/formulario/formulario.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { FormularioComponent } from './components/formulario/formulario.componen
     DetallesComponent,
     TablaComponent,
     FormularioComponent,
-    EntidadesComponent
+    EntidadesComponent,
+    LoginComponent
    
   ],
   imports: [
