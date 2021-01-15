@@ -2,8 +2,8 @@ export interface User{
     idUsuario?: number;
 	nombre: String;
 	email: String;
-	nick: String;
-	pass: String;
+	username: String;
+	password: String;
 	fechaCreacion?: String;
 	edad: number;
 	personaje?: String;

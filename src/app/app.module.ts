@@ -4,6 +4,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpInterceptorService } from './services/http-interceptor.service';
+import { Md5 } from 'ts-md5/dist/md5';
 
 
 import { AppComponent } from './app.component';

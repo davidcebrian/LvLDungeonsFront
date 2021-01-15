@@ -19,8 +19,8 @@ registerForm: FormGroup;
       id:['', Validators.required],
       nombre: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      nick: ['', Validators.required],
-      pass: ['', Validators.required], 
+      username: ['', Validators.required],
+      password: ['', Validators.required], 
       edad: ['', Validators.required],
     })
   }

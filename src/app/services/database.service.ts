@@ -37,8 +37,11 @@ export class DatabaseService {
   }
 
   createUser(user: any): Observable<any>{
+    const md5 = new Md5();
+    const passMd5 = md5.appendStr(user.password).end().toString();
     user.id = "";
     let json = JSON.stringify(user);
+    user.password = passMd5;
     return this.http.post(this.infoEndP, user);
   }
 
