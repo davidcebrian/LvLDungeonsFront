@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
+import { Md5 } from 'ts-md5/dist/md5';
 
 
 @Injectable({
@@ -12,6 +13,20 @@ export class DatabaseService {
   private infoEndP = '/user';
 
   constructor( private http: HttpClient) { }
+
+  login(nick: string, pass: string): Observable<string> {
+    const md5 = new Md5();
+
+    const passMd5 = md5.appendStr(pass).end().toString();
+
+    return this.http.get(this.infoEndP + '?username='+ nick + '&password=' + passMd5,
+     {responseType: 'text'}).pipe(
+       data => {
+         return data;
+       }
+     )
+  }
+
 
   pruebaGetUsers( id: number): Observable<any> {
     return this.http.get(this.infoEndP + `/${id}`);

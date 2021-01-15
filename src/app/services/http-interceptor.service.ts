@@ -13,12 +13,12 @@ export class HttpInterceptorService implements HttpInterceptor{
 
   constructor(private autenticadorJwt: AutJwtService) { }
 
-  /**Intercepta las peticiones que se van a realizar y las redirige a la url indicada, añadiendole los datos necesarios para 
+  /**Intercepta las peticiones que se van a realizar y las redirige a la url indicada, añadiendole los datos necesarios para
    * la autenticación con el token jwt
    */
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token: string | any = this.autenticadorJwt.recuperarJwt();
-    
+    const token: string = this.autenticadorJwt.recuperarJwt();
+
     if(token){
       request = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + token) });
 
@@ -34,11 +34,9 @@ export class HttpInterceptorService implements HttpInterceptor{
     request = Object.assign(request, newUrl);
     const newUrlWithParams = {urlWithParams: this.url + request.urlWithParams};
     request = Object.assign(request, newUrlWithParams);
-    
+
     return next.handle(request).pipe(
       map((event: HttpEvent<any>) => {
-        if (event instanceof HttpResponse) {
-        }
         return event;
       }),
       finalize(() => {
