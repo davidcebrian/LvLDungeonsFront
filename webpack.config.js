@@ -2,7 +2,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
+        test: /\.scss$/,
         loader: 'postcss-loader',
         options: {
           postcssOptions: {
