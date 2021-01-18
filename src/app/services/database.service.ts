@@ -48,6 +48,9 @@ export class DatabaseService {
   modificarUser(user: any): Observable<any>{
     let id = user.id;
     let json = JSON.stringify(user);
+    const md5 = new Md5();
+    const passMd5 = md5.appendStr(user.password).end().toString();
+    user.password = passMd5;
     return this.http.put(this.infoEndP + `/${id}`, user);
   }
 
