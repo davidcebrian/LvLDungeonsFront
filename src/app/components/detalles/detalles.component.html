@@ -1,4 +1,10 @@
 <header></header>
+<div *ngIf = "this.usuarioAutenticado != null">
+    <h1>ESTÁS DENTRO {{this.usuarioAutenticado.username}} !!</h1>
+</div>
+<div *ngIf = "this.usuarioAutenticado == null">
+    <h1>No tienes acceso! Ingresa desde <button class="btn btn-primary" routerLink="/login">AQUÍ</button></h1>
+</div>
 <tabla></tabla>
 <formulario></formulario>
 <footer></footer>
