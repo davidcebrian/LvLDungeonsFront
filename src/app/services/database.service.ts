@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 import { Md5 } from 'ts-md5/dist/md5';
+import { User } from '../interfaces/userInterface';
 
 
 @Injectable({
@@ -12,6 +13,9 @@ export class DatabaseService {
 
   private infoEndP = '/user';
 
+  usuarioAutenticado: User;
+  @Output()
+  cambiosEnUsuario = new EventEmitter<User>();
   constructor( private http: HttpClient) { }
 
   login(nick: string, pass: string): Observable<string> {
@@ -25,6 +29,25 @@ export class DatabaseService {
          return data;
        }
      )
+  }
+
+  getUsuarioAutenticado() : Observable<User> {
+    return this.http.get<User>(`${this.infoEndP}/autenticado`).pipe(
+      tap(userAutenticado => {
+        if((this.usuarioAutenticado == null && userAutenticado != null) || 
+          (this.usuarioAutenticado != null && userAutenticado == null) ||
+          (this.usuarioAutenticado != null && userAutenticado == null && this.usuarioAutenticado.idUsuario != userAutenticado.idUsuario)) {
+            this.emitirCambiosEnUsuario();
+            this.usuarioAutenticado = userAutenticado;
+        }
+      })
+    );
+  }
+
+  emitirCambiosEnUsuario() {
+    this.getUsuarioAutenticado().subscribe(userAutenticado => {
+      return this.cambiosEnUsuario.emit(userAutenticado);
+    })
   }
 
 

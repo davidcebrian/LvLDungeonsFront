@@ -17,6 +17,7 @@ import { TablaComponent } from './components/tabla/tabla.component';
 import { EntidadesComponent } from './components/entidades/entidades.component';
 import { FormularioComponent } from './components/formulario/formulario.component';
 import { LoginComponent } from './components/login/login.component';
+import { InicioComponent } from './components/inicio/inicio.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { LoginComponent } from './components/login/login.component';
     TablaComponent,
     FormularioComponent,
     EntidadesComponent,
-    LoginComponent
+    LoginComponent,
+    InicioComponent
    
   ],
   imports: [

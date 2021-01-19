@@ -27,6 +27,12 @@ export class LoginComponent implements OnInit {
       data => {
         if (data != undefined) {
           this.autJwtService.guardarJwt(JSON.parse(data).jwt);
+          if(localStorage.getItem("jwt") != ""){
+            this.router.navigate(['/detalles']);
+            this.dbService.emitirCambiosEnUsuario();
+          }else{
+            localStorage.clear();
+          }
         }
       }
     )
