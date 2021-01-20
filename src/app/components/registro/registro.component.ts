@@ -13,11 +13,10 @@ import { Router } from '@angular/router';
 export class RegistroComponent implements OnInit {
 
   registerForm: FormGroup;
-  userCreated: User;
+  
 
   constructor(private build: FormBuilder, private userService: DatabaseService, private router: Router) {
     this.registerForm = this.build.group({
-      id:['', Validators.required],
       nombre: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       username: ['', Validators.required],
@@ -46,13 +45,11 @@ export class RegistroComponent implements OnInit {
   }
 
   registro(): void{
-    this.userCreated.nombre = this.registerForm.controls.nombre.value;
-    this.userCreated.edad = this.registerForm.controls.edad.value;
-    this.userCreated.email = this.registerForm.controls.email.value;
-    this.userCreated.password = this.registerForm.controls.password.value;
-    this.userCreated.username = this.registerForm.controls.username.value;
+    let userCreated: User;
 
-    this.userService.createUser(this.userCreated).subscribe(data => {
+    userCreated = this.registerForm.value;
+
+    this.userService.createUser(userCreated).subscribe(data => {
       if (data != undefined) {
           this.router.navigate(['/login']);
         }else{
