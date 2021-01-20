@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder, AbstractControl } from '@angular/forms';
 import { DatabaseService } from '../../services/database.service';
 import { User } from '../../interfaces/userInterface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
@@ -14,7 +15,7 @@ export class RegistroComponent implements OnInit {
   registerForm: FormGroup;
   userCreated: User;
 
-  constructor(private build: FormBuilder, private userService: DatabaseService) {
+  constructor(private build: FormBuilder, private userService: DatabaseService, private router: Router) {
     this.registerForm = this.build.group({
       id:['', Validators.required],
       nombre: ['', Validators.required],
@@ -45,17 +46,18 @@ export class RegistroComponent implements OnInit {
   }
 
   registro(): void{
-    console.log(this.userCreated)
-
     this.userCreated.nombre = this.registerForm.controls.nombre.value;
     this.userCreated.edad = this.registerForm.controls.edad.value;
     this.userCreated.email = this.registerForm.controls.email.value;
     this.userCreated.password = this.registerForm.controls.password.value;
     this.userCreated.username = this.registerForm.controls.username.value;
 
-    console.log(this.userCreated);
-    this.userService.createUser(this.userCreated).subscribe(response => {
-      console.log(response);
+    this.userService.createUser(this.userCreated).subscribe(data => {
+      if (data != undefined) {
+          this.router.navigate(['/login']);
+        }else{
+          localStorage.clear();
+        }
     })
   }
 }
