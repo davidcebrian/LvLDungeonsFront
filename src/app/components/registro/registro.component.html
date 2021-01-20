@@ -1,35 +1,81 @@
-<hr>
-<div>
-    <h2>
-        REGISTRO
-    </h2>
-    <form [formGroup]="registerForm">
-        <div>
-            <label for="inputNombre">
-                Nombre:
-            </label>
-            <input type="text" formControlName="nombre" id="inputNombre" placeholder="Nombre">
+<header></header>
+<div class="h-screen bg-cover registro">
+    <div class="container mx-auto h-full flex flex-1 justify-center items-center">
+        <div class=" w-full max-w-2xl md:flex m-0 divide-x divide-black">
+            <div class="hidden md:flex flex-col w-50 bg-white rounded-left shadow-xl bg-opacity-25 op-92 p-3">
+                <h1>Bienvenido a LvLDungeons!</h1>
+                <hr>
+                <h6>Explora las mazmorras detrás de las puertas y derrota los monstruos para conseguir los tesoros
+                    y lograr la vicoria. ¿Serás capaz de vencer?
+                </h6>
+                <hr>
+                <img class="m-0 p-0 shadow-xl rounded" src="/assets/images/img2.jpg" alt="">
+            </div>
+            <div class="w-11/12 p-12 bg-white sm:w-8/12 md:w-1/2 lg:w-8/12 shadow-xl rounded divide-y divide-black">
+                <form [formGroup]="registerForm" class="mt-6">
+                    <p class="text-black font-medium text-center text-lg font-bold">REGISTRO</p>
+                    <label for="nombre" class="block text-xs font-semibold text-gray-600 uppercase">Nombre</label>
+                    <input class="w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white" type="text" formControlName="nombre" id="inputNombre" placeholder="Nombre">
+                    <label for="lastname" class="block text-xs font-semibold text-gray-600 uppercase">Edad</label>
+                    <input class="w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white" type="number" formControlName="edad" id="inputEdad" placeholder="Edad">
+                    <label for="email" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">E-mail</label>
+                    <input class="w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white" type="text" formControlName="email" id="inputEmail" placeholder="Email">
+                    <label for="inputNickname" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">Nickname</label>
+                    <input class="w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white" type="text" formControlName="username" id="inputNickname" placeholder="Nickname">
+                    <label for="password" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">Password</label>
+                    <input class="w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white" type="password" formControlName="password" id="inputPasword" placeholder="Contraseña">
+                    <label for="password-confirm" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">Confirmar password</label>
+                    <input class="w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white" type="password" formControlName="repetir_password" id="inputPaswordConf" placeholder="Confirmar Contraseña">
+                    <button class=" px-4 py-1 text-white font-light tracking-wider bg-gray-900 hover:bg-gray-800 rounded mt-4 mb-4" type="button" (click)="registro()">
+                    Registrarse
+                    </button>
+                    
+            </form>
+            <div id="login">
+                <br>
+                <h5>¿Ya tienes una cuenta?</h5>
+                <br>
+                <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 hover:bg-gray-800 rounded"
+                routerLink="/login">Iniciar Sesion</button>
+            </div>
         </div>
-        <div>
-            <label for="inputEdad">
-                Edad:
-            </label>
-            <input type="number" formControlName="edad" id="inputEdad" placeholder="Edad">
-        </div>
-        <div>
-            <label for="inputEmail">
-                E-mail:
-            </label>
-            <input type="text" formControlName="email" id="inputEmail" placeholder="Email">
-        </div>
-        <div>
-            <label for="inputNickname">
-                Nickname:
-            </label>
-            <input type="text" formControlName="username" id="inputNickname" placeholder="Nickname">
-        </div>
-        <div>
-            <label for="inputPassword">
+    </div>
+</div>
+</div>
+<footer></footer>
+
+<!-- <hr>
+    <div>
+        <h2>
+            REGISTRO
+            </h2>
+            <form [formGroup]="registerForm">
+                <div>
+                    <label for="inputNombre">
+                        Nombre:
+                    </label>
+                    <input type="text" formControlName="nombre" id="inputNombre" placeholder="Nombre">
+                </div>
+                <div>
+                    <label for="inputEdad">
+                        Edad:
+                    </label>
+                    <input type="number" formControlName="edad" id="inputEdad" placeholder="Edad">
+                </div>
+                <div>
+                    <label for="inputEmail">
+                        E-mail:
+                    </label>
+                    <input type="text" formControlName="email" id="inputEmail" placeholder="Email">
+                </div>
+                <div>
+                    <label for="inputNickname">
+                        Nickname:
+                    </label>
+                    <input type="text" formControlName="username" id="inputNickname" placeholder="Nickname">
+                </div>
+                <div>
+                    <label for="inputPassword">
                 Contraseña:
             </label>
             <input type="password" formControlName="password" id="inputPasword" placeholder="Contraseña">
@@ -44,4 +90,4 @@
             Registrarse
         </button>
     </form>
-</div>
+</div> -->
