@@ -18,6 +18,7 @@ import { EntidadesComponent } from './components/entidades/entidades.component';
 import { FormularioComponent } from './components/formulario/formulario.component';
 import { LoginComponent } from './components/login/login.component';
 import { InicioComponent } from './components/inicio/inicio.component';
+import { RegistroComponent } from './components/registro/registro.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { InicioComponent } from './components/inicio/inicio.component';
     FormularioComponent,
     EntidadesComponent,
     LoginComponent,
-    InicioComponent
+    InicioComponent,
+    RegistroComponent
    
   ],
   imports: [
