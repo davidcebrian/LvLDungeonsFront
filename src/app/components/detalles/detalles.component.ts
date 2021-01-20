@@ -19,6 +19,16 @@ export class DetallesComponent implements OnInit {
     this.dbService.cambiosEnUsuario.subscribe( nuevoUser => {
       this.usuarioAutenticado = nuevoUser;
     })
+    if(this.compruebaJwt && this.usuarioAutenticado == null){
+      this.dbService.getUsuarioAutenticado().subscribe(usuario => {
+        this.usuarioAutenticado = usuario;
+      });
+    }
+  }
+
+  compruebaJwt():boolean{
+    if(localStorage.getItem("jwt")!=null) return true;
+    else return false;
   }
 
 }
