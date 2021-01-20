@@ -1,0 +1,48 @@
+<hr>
+<div>
+    <h2>
+        REGISTRO
+    </h2>
+    <form [formGroup]="registerForm">
+
+        <div>
+            <label for="inputNombre">
+                Nombre:
+            </label>
+            <input type="text" formcontrolname="nombre" id="inputNombre" placeholder="Nombre">
+        </div>
+        <div>
+            <label for="inputEdad">
+                Edad:
+            </label>
+            <input type="number" formcontrolname="edad" id="inputEdad" placeholder="Edad">
+        </div>
+        <div>
+            <label for="inputEmail">
+                E-mail:
+            </label>
+            <input type="text" formcontrolname="email" id="inputEmail" placeholder="Email">
+        </div>
+        <div>
+            <label for="inputNickname">
+                Nickname:
+            </label>
+            <input type="text" formcontrolname="username" id="inputNickname" placeholder="Nickname">
+        </div>
+        <div>
+            <label for="inputPassword">
+                Contraseña:
+            </label>
+            <input type="password" formcontrolname="password" id="inputPasword" placeholder="Contraseña">
+        </div>
+        <div>
+          <label for="inputPassword">
+              Confirmar contraseña:
+          </label>
+          <input type="password" formcontrolname="repetir_password" id="inputPaswordConf" placeholder="Confirmar Contraseña">
+      </div>
+        <button type="button" (click)="registro()">
+            Registrarse
+        </button>
+    </form>
+</div>
