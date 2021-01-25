@@ -15,20 +15,44 @@
                 <form [formGroup]="registerForm" class="mt-6">
                     <p class="text-black font-medium text-center text-lg font-bold">REGISTRO</p>
                     <label for="nombre" class="block text-xs font-semibold text-gray-600 uppercase">Nombre</label>
-                    <input class="w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white" type="text" formControlName="nombre" id="inputNombre" placeholder="Nombre">
+                    <input [class]="this.registerForm.controls.nombre.invalid && this.registerForm.controls.nombre.value != '' 
+                    ? 'w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white border-solid border-red-500 border-2'
+                    : 'w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white'" 
+                    type="text" formControlName="nombre" id="inputNombre" placeholder="Nombre">
+
                     <label for="lastname" class="block text-xs font-semibold text-gray-600 uppercase">Edad</label>
-                    <input class="w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white" type="number" formControlName="edad" id="inputEdad" placeholder="Edad">
+                    <input [class]="this.registerForm.controls.edad.invalid && this.registerForm.controls.edad.value != '' 
+                    ? 'w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white border-solid border-red-500 border-2'
+                    : 'w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white'" 
+                    type="number" formControlName="edad" id="inputEdad" placeholder="Edad">
+
                     <label for="email" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">E-mail</label>
-                    <input class="w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white" type="text" formControlName="email" id="inputEmail" placeholder="Email">
+                    <input [class]="this.registerForm.controls.email.invalid && this.registerForm.controls.email.value != '' 
+                    ? 'w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white border-solid border-red-500 border-2'
+                    : 'w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white'" 
+                    type="text" formControlName="email" id="inputEmail" placeholder="Email">
+
                     <label for="inputNickname" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">Nickname</label>
-                    <input class="w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white" type="text" formControlName="username" id="inputNickname" placeholder="Nickname">
+                    <input [class]="this.registerForm.controls.username.invalid && this.registerForm.controls.username.value != '' 
+                    ? 'w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white border-solid border-red-500 border-2'
+                    : 'w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white'" 
+                    type="text" formControlName="username" id="inputNickname" placeholder="Nickname">
+                    
                     <label for="password" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">Password</label>
-                    <input class="w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white" type="password" formControlName="password" id="inputPasword" placeholder="Contraseña">
+                    <input [class]="this.registerForm.controls.password.invalid && this.registerForm.controls.password.value != '' 
+                    ? 'w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white border-solid border-red-500 border-2'
+                    : 'w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white'" 
+                    type="password" formControlName="password" id="inputPasword" placeholder="Contraseña">
+
                     <label for="password-confirm" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">Confirmar password</label>
-                    <input class="w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white" type="password" formControlName="repetir_password" id="inputPaswordConf" placeholder="Confirmar Contraseña">
+                    <input [class]="this.registerForm.controls.repetir_password.invalid && this.registerForm.controls.repetir_password.value != '' 
+                    ? 'w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white border-solid border-red-500 border-2'
+                    : 'w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white'" 
+                    type="password" formControlName="repetir_password" id="inputPaswordConf" placeholder="Confirmar Contraseña">
+
                     <button  type="button" (click)="registro()" [disabled]="registerForm.invalid"
                     [class]="registerForm.invalid ? 'px-4 py-1 text-white font-light tracking-wider bg-gray-600 rounded mt-4 mb-4' : 'px-4 py-1 text-white font-light tracking-wider bg-gray-900 hover:bg-gray-800 mt-4 mb-4 rounded'">
-                      Registrarse
+                    Registrarse
                     </button>
             </form>
             <div id="login">
