@@ -1,5 +1,5 @@
 <header></header>
-<div *ngIf = "this.usuarioAutenticado != null || compruebaJwt() == true">
+<div *ngIf = "this.usuarioAutenticado != null && compruebaJwt() == true">
     <h1>ESTÁS DENTRO {{this.usuarioAutenticado.username}} !!</h1>
 </div>
 <div *ngIf = "this.usuarioAutenticado == null && compruebaJwt() == false">
