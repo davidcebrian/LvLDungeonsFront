@@ -13,7 +13,8 @@ import { Router } from '@angular/router';
 export class RegistroComponent implements OnInit {
 
   registerForm: FormGroup;
-
+  ocultarPass: boolean=true;
+  ocultarPassRep: boolean=true;
 
   constructor(private build: FormBuilder, private userService: DatabaseService, private router: Router) {
   }

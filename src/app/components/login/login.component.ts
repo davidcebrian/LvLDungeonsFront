@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', [Validators.required,  Validators.minLength(3)])
   })
 
+  ocultarPass: boolean = true;
+
   constructor(private router: Router, private autJwtService: AutJwtService,
     private dbService: DatabaseService) { }
 
