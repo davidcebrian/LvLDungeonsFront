@@ -12,8 +12,8 @@ import { DatabaseService } from 'src/app/services/database.service'
 })
 export class LoginComponent implements OnInit {
   loginForm = new FormGroup({
-    usuario: new FormControl('',[Validators.required]),
-    password: new FormControl('', [Validators.required])
+    usuario: new FormControl('',[Validators.required,  Validators.minLength(3)]),
+    password: new FormControl('', [Validators.required,  Validators.minLength(3)])
   })
 
   constructor(private router: Router, private autJwtService: AutJwtService,
