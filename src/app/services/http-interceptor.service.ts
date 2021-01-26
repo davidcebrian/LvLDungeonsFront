@@ -9,7 +9,8 @@ import { AutJwtService } from './aut-jwt.service';
 })
 export class HttpInterceptorService implements HttpInterceptor{
 
-  url = 'http://127.0.0.1:8080';
+  /**http://vps-6874d3d9.vps.ovh.net */
+  url = 'http://localhost:8080';
 
   constructor(private autenticadorJwt: AutJwtService) { }
 
@@ -40,7 +41,7 @@ export class HttpInterceptorService implements HttpInterceptor{
         return event;
       }),
       finalize(() => {
-       })
+      })
       );
 
 

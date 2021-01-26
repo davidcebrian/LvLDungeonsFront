@@ -47,10 +47,10 @@
                     
                         <span class="absolute inset-y-0 right-0 mx-3 flex items-center pl-2">
                             <button class="" *ngIf="!ocultarPass" (click)="ocultarPass = !ocultarPass">
-                              <img src="../../../assets/images/baseline_visibility_black_18dp.png" alt="">
+                              <img src="../../../assets/images/baseline_visibility_black_18dp.png" alt="Icono visibilidad contraseña">
                             </button>
                             <button clas="" *ngIf="ocultarPass" (click)="ocultarPass = !ocultarPass">
-                              <img src="../../../assets/images/baseline_visibility_off_black_18dp.png" alt="">
+                              <img src="../../../assets/images/baseline_visibility_off_black_18dp.png" alt="Icono visibilidad off contraseña">
                             </button>
                           </span>
                     </div>
@@ -64,16 +64,16 @@
                         [type]="ocultarPassRep ? 'password': 'text'" formControlName="repetir_password" id="inputPaswordConf" placeholder="Confirmar Contraseña">
                         <span class="absolute inset-y-0 right-0 mx-3 flex items-center pl-2">
                             <button class="" *ngIf="!ocultarPassRep" (click)="ocultarPassRep = !ocultarPassRep">
-                              <img src="../../../assets/images/baseline_visibility_black_18dp.png" alt="">
+                              <img src="../../../assets/images/baseline_visibility_black_18dp.png" alt="Icono visibilidad contraseña">
                             </button>
                             <button clas="" *ngIf="ocultarPassRep" (click)="ocultarPassRep = !ocultarPassRep">
-                              <img src="../../../assets/images/baseline_visibility_off_black_18dp.png" alt="">
+                              <img src="../../../assets/images/baseline_visibility_off_black_18dp.png" alt="Icono visibilidad off contraseña">
                             </button>
                           </span>
                     </div>
 
                     <button  type="button" (click)="registro()" [disabled]="registerForm.invalid"
-                    [class]="registerForm.invalid ? 'px-4 py-1 text-white font-light tracking-wider bg-gray-600 rounded mt-4 mb-4' : 'px-4 py-1 text-white font-light tracking-wider bg-gray-900 hover:bg-gray-800 mt-4 mb-4 rounded'">
+                    [class]="registerForm.invalid ? 'cursor-default px-4 py-1 text-white font-light tracking-wider bg-gray-600 rounded mt-4 mb-4' : 'px-4 py-1 text-white font-light tracking-wider bg-gray-900 hover:bg-gray-800 mt-4 mb-4 rounded'">
                     Registrarse
                     </button>
             </form>
@@ -90,50 +90,3 @@
 </div>
 <footer></footer>
 
-<!-- <hr>
-    <div>
-        <h2>
-            REGISTRO
-            </h2>
-            <form [formGroup]="registerForm">
-                <div>
-                    <label for="inputNombre">
-                        Nombre:
-                    </label>
-                    <input type="text" formControlName="nombre" id="inputNombre" placeholder="Nombre">
-                </div>
-                <div>
-                    <label for="inputEdad">
-                        Edad:
-                    </label>
-                    <input type="number" formControlName="edad" id="inputEdad" placeholder="Edad">
-                </div>
-                <div>
-                    <label for="inputEmail">
-                        E-mail:
-                    </label>
-                    <input type="text" formControlName="email" id="inputEmail" placeholder="Email">
-                </div>
-                <div>
-                    <label for="inputNickname">
-                        Nickname:
-                    </label>
-                    <input type="text" formControlName="username" id="inputNickname" placeholder="Nickname">
-                </div>
-                <div>
-                    <label for="inputPassword">
-                Contraseña:
-            </label>
-            <input type="password" formControlName="password" id="inputPasword" placeholder="Contraseña">
-        </div>
-        <div>
-          <label for="inputPassword">
-              Confirmar contraseña:
-          </label>
-          <input type="password" formControlName="repetir_password" id="inputPaswordConf" placeholder="Confirmar Contraseña">
-      </div>
-        <button type="button" (click)="registro()">
-            Registrarse
-        </button>
-    </form>
-</div> -->

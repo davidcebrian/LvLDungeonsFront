@@ -9,18 +9,18 @@
             y lograr la victoria. ¿Serás capaz de vencer?
           </h6>
           <hr>
-          <img class="m-0 p-0 shadow-xl rounded" src="/assets/images/img2.jpg" alt="">
+          <img class="m-0 p-0 shadow-xl rounded" src="/assets/images/img2.jpg" alt="Imagen pasillos oscuros de mazmorra">
         </div>
         <div class="leading-loose">
           <form class="max-w-sm m-0 p-10 bg-white bg-opacity-25 op-92 rounded-right shadow-xl divide-y divide-black" [formGroup]="loginForm">
               <div id="login">
                 <p class="text-black font-medium text-center text-lg font-bold">LOGIN</p>
                 <div class="">
-                  <label class="block text-sm text-black" for="usuario">Nombre de Usuario</label>
+                  <label class="block text-sm text-black" for="usuario">Nickname</label>
                   <input [class]="this.loginForm.controls.usuario.invalid && this.loginForm.controls.usuario.value != '' 
                   ? 'w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white border-solid border-red-500 border-2'
                   : 'w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white'"
-                  type="text" id="usuario"  placeholder="Username" aria-label="username" formControlName="usuario">
+                  type="text" id="usuario"  placeholder="Nickname" aria-label="username" formControlName="usuario">
                 </div>
                 <div class="mt-2">
                   <label class="block  text-sm text-black flex justify-between">Contraseña</label>
@@ -31,17 +31,17 @@
                     [type]="ocultarPass ? 'password': 'text'" id="password" placeholder="Password" arial-label="password" formControlName="password">
                     <span class="absolute inset-y-0 right-0 mx-3 flex items-center pl-2">
                       <button class="" *ngIf="!ocultarPass" (click)="ocultarPass = !ocultarPass">
-                        <img src="../../../assets/images/baseline_visibility_black_18dp.png" alt="">
+                        <img src="../../../assets/images/baseline_visibility_black_18dp.png" alt="boton visibilidad contraseña">
                       </button>
                       <button clas="" *ngIf="ocultarPass" (click)="ocultarPass = !ocultarPass">
-                        <img src="../../../assets/images/baseline_visibility_off_black_18dp.png" alt="">
+                        <img src="../../../assets/images/baseline_visibility_off_black_18dp.png" alt="boton visibilidad off contraseña">
                       </button>
                     </span>
                       </div>
                 </div>
                 <div class="mt-4 items-center flex justify-between">
                   <button [disabled]="loginForm.invalid" (click)="login()"
-                  [class]="loginForm.invalid ? 'px-4 py-1 text-white font-light tracking-wider bg-gray-600 rounded' : 'px-4 py-1 text-white font-light tracking-wider bg-gray-900 hover:bg-gray-800 rounded'">
+                  [class]="loginForm.invalid ? 'cursor-default px-4 py-1 text-white font-light tracking-wider bg-gray-600 rounded' : 'px-4 py-1 text-white font-light tracking-wider bg-gray-900 hover:bg-gray-800 rounded'">
                     Log in
                   </button>
                 </div>
