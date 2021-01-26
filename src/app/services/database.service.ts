@@ -9,28 +9,33 @@ import { User } from '../interfaces/userInterface';
 @Injectable({
   providedIn: 'root'
 })
+
+/**Servicio para gestionar lo relacionado a los usuarios (Login, autenticacion, registro.. etc) */
 export class DatabaseService {
 
   private infoEndP = '/user';
-
+  
   usuarioAutenticado: User;
+
   @Output()
-  cambiosEnUsuario = new EventEmitter<User>();
+  cambiosEnUsuario = new EventEmitter<User>(); //Emite los cambios que hay en el usuario, de NO REGISTRADO a REGISTRADO, viceversa.. etc
+
   constructor( private http: HttpClient) { }
 
+  /**Pâra realizar la peticion de autenticación del usuario, cogiendo la pass codificada en md5 */
   login(nick: string, pass: string): Observable<string> {
     const md5 = new Md5();
-
     const passMd5 = md5.appendStr(pass).end().toString();
 
     return this.http.get(this.infoEndP + '?username='+ nick + '&password=' + passMd5,
-     {responseType: 'text'}).pipe(
-       data => {
-         return data;
-       }
-     )
+    {responseType: 'text'}).pipe(
+      data => {
+        return data;
+      }
+    )
   }
 
+  /**Recoge los datos del usuario autenticado y si ha registrado algún cambio y emite esos cambios */
   getUsuarioAutenticado() : Observable<User> {
     return this.http.get<User>(`${this.infoEndP}/autenticado`).pipe(
       tap(userAutenticado => {
@@ -44,21 +49,24 @@ export class DatabaseService {
     );
   }
 
+  /**Para emitir los cambios en el usuario */
   emitirCambiosEnUsuario() {
     this.getUsuarioAutenticado().subscribe(userAutenticado => {
       return this.cambiosEnUsuario.emit(userAutenticado);
     })
   }
 
-
+  /**Recoger usuarios */
   pruebaGetUsers( id: number): Observable<any> {
     return this.http.get(this.infoEndP + `/${id}`);
   }
 
+  /**Recoger todos los usuarios */
   GetAllUsers(): Observable<any> {
     return this.http.get(this.infoEndP + '/all');
   }
 
+  /**Crerar un usuario con la contraseña codificada en md5 para guardarla en la base de datos */
   createUser(user: any): Observable<any>{
     const md5 = new Md5();
     const passMd5 = md5.appendStr(user.password).end().toString();
@@ -68,6 +76,7 @@ export class DatabaseService {
     return this.http.post(this.infoEndP, user);
   }
 
+  /**Modifica un usuario según su id */
   modificarUser(user: any): Observable<any>{
     let id = user.id;
     let json = JSON.stringify(user);
@@ -77,6 +86,7 @@ export class DatabaseService {
     return this.http.put(this.infoEndP + `/${id}`, user);
   }
 
+  /**Borrar un usuario */
   borrarUser(user: any): Observable<any>{
     let id = user.id;
     return this.http.delete(this.infoEndP + `/${id}`);

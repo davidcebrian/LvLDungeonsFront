@@ -1,7 +1,9 @@
 <header></header>
+<!--Si existe usuario autenticado muestra esto -->
 <div *ngIf = "this.usuarioAutenticado != null && compruebaJwt() == true">
     <h1>ESTÁS DENTRO {{this.usuarioAutenticado.username}} !!</h1>
 </div>
+<!--Si no existe usuario autenticado muestra esto -->
 <div *ngIf = "this.usuarioAutenticado == null && compruebaJwt() == false">
     <h1>No tienes acceso! Ingresa desde <button class="btn btn-primary" routerLink="/login">AQUÍ</button></h1>
 </div>

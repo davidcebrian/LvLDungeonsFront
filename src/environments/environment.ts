@@ -6,7 +6,7 @@ export const environment = {
   production: false
 };
 
-
+/**Urls de los servidores que podemos utilizar */
 export const urls = {
   local:  'http://localhost:8080',
   servidor: 'http://vps-6874d3d9.vps.ovh.net'

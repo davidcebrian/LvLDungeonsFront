@@ -14,7 +14,8 @@ export class DetallesComponent implements OnInit {
 
   constructor(private router:Router, 
               private dbService: DatabaseService) { }
-
+  
+  /**Recoge los cambios cuando se identifica un usuario o se desconecta el mismo y lo guarda */
   ngOnInit(): void {
     this.dbService.cambiosEnUsuario.subscribe( nuevoUser => {
       this.usuarioAutenticado = nuevoUser;
@@ -25,7 +26,7 @@ export class DetallesComponent implements OnInit {
       });
     }
   }
-
+  /**Para comprobar que existe el jwt del usuario que este autenticado */
   compruebaJwt():boolean{
     if(localStorage.getItem("jwt")!=null) return true;
     else return false;
