@@ -3,14 +3,14 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } fr
 import { Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 import { AutJwtService } from './aut-jwt.service';
+import { urls } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpInterceptorService implements HttpInterceptor{
 
-  /**http://vps-6874d3d9.vps.ovh.net */
-  url = 'http://localhost:8080';
+  url = urls.local;
 
   constructor(private autenticadorJwt: AutJwtService) { }
 

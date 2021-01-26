@@ -6,6 +6,13 @@ export const environment = {
   production: false
 };
 
+
+export const urls = {
+  local:  'http://localhost:8080',
+  servidor: 'http://vps-6874d3d9.vps.ovh.net'
+}
+
+
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
