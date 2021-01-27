@@ -9,10 +9,12 @@ import { Router } from '@angular/router';
   templateUrl: './registro.component.html',
   styleUrls: ['./registro.component.scss']
 })
-
+/**Pantalla de registro */
 export class RegistroComponent implements OnInit {
 
+  /**Declaracion del formulario */
   registerForm: FormGroup;
+  /**Boolean para identificar si se muestra o no se muestra la contraseña */
   ocultarPass: boolean=true;
   ocultarPassRep: boolean=true;
 
@@ -20,6 +22,7 @@ export class RegistroComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    /**Inicialización de formulario reactivo de registro */
     this.registerForm = this.build.group({
       nombre: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -30,6 +33,7 @@ export class RegistroComponent implements OnInit {
     }, {validator: this.compararPasswords('password', 'repetir_password')})
   }
 
+  /**Método privado para comprobar que ambas contraseñas coinciden */
   private compararPasswords(control: string, control2: string){
     return(formGroup: FormGroup) =>{
       const password = formGroup.controls[control];
@@ -47,6 +51,9 @@ export class RegistroComponent implements OnInit {
     }
   }
 
+  /**Sirve para crear  un usuario según los valores introducidos en el formulario, siempre y cuando 
+   * estos sean válidos y el nickname y el correo no estén ya registrados en el sistema.
+   */
   registro(): void{
     let userCreated: User;
 
