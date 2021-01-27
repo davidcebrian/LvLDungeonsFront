@@ -21,6 +21,10 @@ export class LoginComponent implements OnInit {
   /**Boolan para identificar si se muestra o no se muestra la contraseña */
   ocultarPass: boolean = true;
 
+  /**String error y Boolean para error usuario o contraseña incorrecta */
+  mensaje:string;
+  error:boolean = false;
+
   constructor(private router: Router, private autJwtService: AutJwtService,
     private dbService: DatabaseService) { }
 
@@ -34,7 +38,11 @@ export class LoginComponent implements OnInit {
   login() {
     this.dbService.login(this.loginForm.controls.usuario.value, this.loginForm.controls.password.value).subscribe(
       data => {
-        if (data != undefined) {
+        if(JSON.parse(data).mensaje != null){
+          this.mensaje = JSON.parse(data).mensaje;
+          this.error = true;
+        }
+        else if (data != undefined) {
           this.autJwtService.guardarJwt(JSON.parse(data).jwt);
           if(localStorage.getItem("jwt") != ""){
             this.router.navigate(['/detalles']);

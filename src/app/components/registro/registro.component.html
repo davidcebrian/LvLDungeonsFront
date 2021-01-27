@@ -3,18 +3,18 @@
   <!-- div contenedor-->
     <div class="container mx-auto h-full flex flex-1 justify-center items-center">
         <div class=" w-full max-w-2xl md:flex m-0 divide-x divide-black">
-           <!-- tarjeta de la parte izquierda -->
-            <div class="hidden md:flex flex-col w-50 bg-white rounded-left shadow-xl bg-opacity-25 op-92 p-3">
-                <h1>Bienvenido a LvLDungeons!</h1>
-                <hr>
+          <!-- tarjeta de la parte izquierda -->
+            <div class="hidden md:flex flex-col w-3/5 bg-white rounded-l shadow-xl op-92 p-3">
+                <h1 class="text-3xl font-extrabold">Bienvenido a LvLDungeons!</h1>
+                <br><hr><br>
                 <h6>Explora las mazmorras detrás de las puertas y derrota los monstruos para conseguir los tesoros
                     y lograr la victoria. ¿Serás capaz de vencer?
                 </h6>
-                <hr>
+                <br><hr><br>
                 <img class="m-0 p-0 shadow-xl rounded" src="/assets/images/img2.jpg" alt="Imagen de pasillos oscuros de mazmorra">
             </div>
             <!-- Div de la parte derecha, recoge el formulario-->
-            <div class="w-11/12 p-12 bg-white sm:w-8/12 md:w-1/2 lg:w-8/12 shadow-xl rounded divide-y divide-black op-92">
+            <div class="w-11/12 p-12 bg-white sm:w-8/12 md:w-1/2 lg:w-8/12 shadow-xl rounded-r divide-y divide-black op-92">
                 <form [formGroup]="registerForm" class="mt-6">
                     <p class="text-black text-center text-lg font-bold">REGISTRO</p>
                     <!--input nombre-->
