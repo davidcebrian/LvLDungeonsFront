@@ -10,8 +10,9 @@ export class AutJwtService {
   constructor() { }
 
   /**Guarda el token en el localStorage */
-  guardarJwt(token: string){
+  guardarJwt(token: string, id: string){
     localStorage.setItem("jwt", token);
+    localStorage.setItem("id", id);
   }
   /**Recupera el token del localStorage */
   recuperarJwt() {
@@ -19,6 +20,6 @@ export class AutJwtService {
   }
   /**Borra el token del localStorage */
   borrarJwt() {
-    localStorage.removeItem("jwt");
+    localStorage.clear();
   }
 }

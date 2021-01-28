@@ -14,7 +14,7 @@ import { User } from '../interfaces/userInterface';
 export class DatabaseService {
 
   private infoEndP = '/user';
-  
+
   usuarioAutenticado: User;
 
   @Output()
@@ -37,9 +37,9 @@ export class DatabaseService {
 
   /**Recoge los datos del usuario autenticado y si ha registrado algún cambio y emite esos cambios */
   getUsuarioAutenticado() : Observable<User> {
-    return this.http.get<User>(`${this.infoEndP}/autenticado`).pipe(
+    return this.http.get<User>(this.infoEndP + '/' + localStorage.getItem('id')).pipe(
       tap(userAutenticado => {
-        if((this.usuarioAutenticado == null && userAutenticado != null) || 
+        if((this.usuarioAutenticado == null && userAutenticado != null) ||
           (this.usuarioAutenticado != null && userAutenticado == null) ||
           (this.usuarioAutenticado != null && userAutenticado == null && this.usuarioAutenticado.idUsuario != userAutenticado.idUsuario)) {
             this.emitirCambiosEnUsuario();
