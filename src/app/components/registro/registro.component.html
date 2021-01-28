@@ -89,10 +89,14 @@
                     </div>
 
                     <!--boton de resgistro que llama al servicio que lanza la petición al back-->
-                    <button  type="button" (click)="registro()" [disabled]="registerForm.invalid"
-                    [class]="registerForm.invalid ? 'cursor-default px-4 py-1 text-white font-light tracking-wider bg-gray-600 rounded mt-4 mb-4' : 'px-4 py-1 text-white font-light tracking-wider bg-gray-900 hover:bg-gray-800 mt-4 mb-4 rounded'">
-                    Registrarse
+                    <div class="mt-4 items-center flex flex-col justify-between">
+                      <p *ngIf="registerForm.controls.repetir_password.errors != null && registerForm.controls.repetir_password.errors.passwordMismatch" class="text-red-700 text-sm">Las contraseñas no coinciden</p>
+                      <p *ngIf="error" class="text-red-700 text-sm">{{mensaje}}</p>
+                      <button  type="button" (click)="registro()" [disabled]="registerForm.invalid"
+                      [class]="registerForm.invalid ? 'cursor-default px-4 py-1 text-white font-light tracking-wider bg-gray-600 rounded mt-4 mb-4' : 'px-4 py-1 text-white font-light tracking-wider bg-gray-900 hover:bg-gray-800 mt-4 mb-4 rounded'">
+                      Registrarse
                     </button>
+                  </div>
             </form>
             <!--div que contiene el botón para ir al login-->
             <div id="login">

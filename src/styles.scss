@@ -58,3 +58,8 @@ input, textarea {
 .op-92{
     opacity: .92;
 }
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    right: 5px;
+  }

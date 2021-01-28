@@ -38,8 +38,8 @@ export class LoginComponent implements OnInit {
   login() {
     this.dbService.login(this.loginForm.controls.usuario.value, this.loginForm.controls.password.value).subscribe(
       data => {
-        if(JSON.parse(data).mensaje != null){
-          this.mensaje = JSON.parse(data).mensaje;
+        if(data.mensaje != null){
+          this.mensaje = data.mensaje;
           this.error = true;
         }
         else if (data != undefined) {

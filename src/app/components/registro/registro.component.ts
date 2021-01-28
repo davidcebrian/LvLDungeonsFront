@@ -17,6 +17,9 @@ export class RegistroComponent implements OnInit {
   /**Boolean para identificar si se muestra o no se muestra la contraseña */
   ocultarPass: boolean=true;
   ocultarPassRep: boolean=true;
+  /**mensajes y control de rrores */
+  mensaje:string;
+  error:boolean = false;
 
   constructor(private build: FormBuilder, private userService: DatabaseService, private router: Router) {
   }
@@ -60,7 +63,11 @@ export class RegistroComponent implements OnInit {
     userCreated = this.registerForm.value;
 
     this.userService.createUser(userCreated).subscribe(data => {
-      if (data != undefined) {
+      if(data.mensaje != null){
+        this.mensaje = data.mensaje;
+        this.error = true;
+      }
+      else if (data != undefined) {
           this.router.navigate(['/login']);
         }else{
           localStorage.clear();

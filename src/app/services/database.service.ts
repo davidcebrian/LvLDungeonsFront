@@ -23,12 +23,11 @@ export class DatabaseService {
   constructor( private http: HttpClient) { }
 
   /**Pâra realizar la peticion de autenticación del usuario, cogiendo la pass codificada en md5 */
-  login(nick: string, pass: string): Observable<string> {
+  login(nick: string, pass: string): Observable<any> {
     const md5 = new Md5();
     const passMd5 = md5.appendStr(pass).end().toString();
 
-    return this.http.get(this.infoEndP + '?username='+ nick + '&password=' + passMd5,
-    {responseType: 'text'}).pipe(
+    return this.http.get(this.infoEndP + '?username='+ nick + '&password=' + passMd5).pipe(
       data => {
         return data;
       }

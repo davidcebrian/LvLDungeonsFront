@@ -48,7 +48,7 @@
                     </span>
                       </div>
                 </div>
-                <!--Botón de login, disabled si el formulario no es válido -->
+                <!--Botón de login, disabled si el formulario no es válido, mensajes de error por encima-->
                 <div class="mt-4 items-center flex flex-col justify-between">
                   <p *ngIf="error" class="text-red-700 text-sm">{{mensaje}}</p>
                   <button [disabled]="loginForm.invalid" (click)="login()"

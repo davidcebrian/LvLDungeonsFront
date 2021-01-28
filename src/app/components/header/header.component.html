@@ -1,5 +1,30 @@
+<nav class="flex items-center bg-gray-800 p-3 flex-wrap">
+    <a href="#" class="p-2 mr-4 inline-flex items-center">
+        <span class="text-xl text-white font-bold uppercase tracking-wide">LVLDUNGEONS</span>
+    </a>
+    <button
+        class="text-white inline-flex p-3 hover:bg-gray-900 rounded lg:hidden ml-auto hover:text-white outline-none nav-toggler"
+        data-target="#navigation">
+        <i class="material-icons">menu</i>
+    </button>
+    <div class="hidden top-navbar w-full lg:inline-flex lg:flex-grow lg:w-auto"
+        id="navigation">
+        
+        <div *ngIf="this.usuarioAutenticado != null"
+        class="lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start  flex flex-col lg:h-auto">
+            <div class="dropdown inline-block relative">
+              <button class=" text-white font-semibold py-2 px-4 rounded inline-flex items-center">
+                <span class="mr-1"><i class="far fa-user"></i></span>
+              </button>
+              <ul class="dropdown-menu absolute hidden text-gray-700 pt-1">
+                <li class=""><a class="right-10 bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap cursor-pointer" (click)="desLogear()">Cerrar Sesión</a></li>
+            </ul>
+            </div>
+          
+          </div>
+        </div>
+    </nav>
 <!-- 
-
     <nav class="navbar navbar-expand-lg navbar-dark bg-gray-700">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -31,26 +56,4 @@
 </nav>
 -->
 <!-- component -->
-<nav class="flex items-center bg-gray-800 p-3 flex-wrap">
-    <a href="#" class="p-2 mr-4 inline-flex items-center">
-        <span class="text-xl text-white font-bold uppercase tracking-wide">LVLDUNGEONS</span>
-    </a>
-    <button
-        class="text-white inline-flex p-3 hover:bg-gray-900 rounded lg:hidden ml-auto hover:text-white outline-none nav-toggler"
-        data-target="#navigation">
-        <i class="material-icons">menu</i>
-    </button>
-    <div class="hidden top-navbar w-full lg:inline-flex lg:flex-grow lg:w-auto"
-        id="navigation">
-        <div
-        class="lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start  flex flex-col lg:h-auto">
-        <a
-            href="#"
-            class="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-gray-400 items-center justify-center hover:bg-gray-900 hover:text-white">
-            <span>Inicio</span>
-        </a>
-        
-        </div>
-    </div>
-    </nav>
 
