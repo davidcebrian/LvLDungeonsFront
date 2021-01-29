@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
           this.error = true;
         }
         else if (data != undefined) {
-          this.autJwtService.guardarJwt(JSON.parse(data).jwt, JSON.parse(data).id);
+          this.autJwtService.guardarJwt(data.jwt, data.id);
           if(localStorage.getItem("jwt") != ""){
             this.router.navigate(['/detalles']);
             this.dbService.emitirCambiosEnUsuario();
@@ -51,6 +51,12 @@ export class LoginComponent implements OnInit {
             localStorage.clear();
           }
         }
+      },
+      error => {
+        if(error != null){
+          console.log(error);
+          this.router.navigate(['/error']);
+        } 
       }
     )
   }

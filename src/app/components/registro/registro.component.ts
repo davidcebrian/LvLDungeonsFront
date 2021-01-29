@@ -72,6 +72,13 @@ export class RegistroComponent implements OnInit {
         }else{
           localStorage.clear();
         }
-    })
+    },
+    error => {
+      if(error != null){
+        console.log(error);
+        this.router.navigate(['/error']);
+      } 
+    }
+    )
   }
 }
