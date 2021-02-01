@@ -21,6 +21,7 @@ import { LoginComponent } from './components/login/login.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { ErrorComponent } from './components/error/error.component';
+import { InfoComponent } from './components/info/info.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ErrorComponent } from './components/error/error.component';
     LoginComponent,
     InicioComponent,
     RegistroComponent,
-    ErrorComponent
+    ErrorComponent,
+    InfoComponent
    
   ],
   imports: [

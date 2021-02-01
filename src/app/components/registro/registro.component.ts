@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators, FormBuilder, AbstractControl } from
 import { DatabaseService } from '../../services/database.service';
 import { User } from '../../interfaces/userInterface';
 import { Router } from '@angular/router';
+import { ErroresService } from '../../services/errores.service';
 
 @Component({
   selector: 'app-registro',
@@ -21,8 +22,12 @@ export class RegistroComponent implements OnInit {
   mensaje:string;
   error:boolean = false;
 
-  constructor(private build: FormBuilder, private userService: DatabaseService, private router: Router) {
-  }
+  //modal mostrar errores
+  showmodalError: boolean = false;
+  showmodalInfo: boolean = false;
+
+  constructor(private build: FormBuilder, private userService: DatabaseService, private router: Router, 
+              private errorService: ErroresService) {}
 
   ngOnInit(): void {
     /**Inicialización de formulario reactivo de registro */
@@ -68,15 +73,25 @@ export class RegistroComponent implements OnInit {
         this.error = true;
       }
       else if (data != undefined) {
+        this.errorService.showInfo(); //muestra info
+        this.showmodalInfo = this.errorService.mostrarInfo;
+        setTimeout(() => {
+          this.errorService.showInfo(); //tras un tiempo desactiva info
+          this.showmodalInfo = this.errorService.mostrarInfo
           this.router.navigate(['/login']);
+        }, 4000);
         }else{
           localStorage.clear();
         }
     },
     error => {
       if(error != null){
-        console.log(error);
-        this.router.navigate(['/error']);
+        this.errorService.showError(); //muestra error
+        this.showmodalError = this.errorService.mostrarError
+        setTimeout(() => {
+          this.errorService.showError(); //tras un tiempo desactiva error
+          this.showmodalError = this.errorService.mostrarError
+        }, 7000);
       } 
     }
     )

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AutJwtService } from 'src/app/services/aut-jwt.service'
-import { DatabaseService } from 'src/app/services/database.service'
+import { AutJwtService } from 'src/app/services/aut-jwt.service';
+import { DatabaseService } from 'src/app/services/database.service';
+import { ErroresService } from 'src/app/services/errores.service';
 
 
 @Component({
@@ -25,8 +26,13 @@ export class LoginComponent implements OnInit {
   mensaje:string;
   error:boolean = false;
 
+  //modal mostrar errores
+  showmodalError: boolean = false;
+  showmodalInfo: boolean = false;
+
+  
   constructor(private router: Router, private autJwtService: AutJwtService,
-    private dbService: DatabaseService) { }
+    private dbService: DatabaseService, private errorService: ErroresService) { }
 
   ngOnInit(): void {
   }
@@ -55,11 +61,18 @@ export class LoginComponent implements OnInit {
       error => {
         if(error != null){
           console.log(error);
-          this.router.navigate(['/error']);
+          this.errorService.showError(); //muestra error
+          this.showmodalError = this.errorService.mostrarError
+          setTimeout(() => {
+            this.errorService.showError(); //tras un tiempo desactiva error
+            this.showmodalError = this.errorService.mostrarError
+          }, 7000);
         } 
       }
     )
   }
+
+
 }
 
 
