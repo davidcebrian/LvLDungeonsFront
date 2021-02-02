@@ -26,8 +26,9 @@ export class LoginComponent implements OnInit {
   mensaje:string;
   error:boolean = false;
 
-  //modal mostrar errores
+  //bool para indicar mostrar errores
   showmodalError: boolean = false;
+  //bool para indicar mostrar errores
   showmodalInfo: boolean = false;
 
   
@@ -51,8 +52,14 @@ export class LoginComponent implements OnInit {
         else if (data != undefined) {
           this.autJwtService.guardarJwt(data.jwt, data.id);
           if(localStorage.getItem("jwt") != ""){
-            this.router.navigate(['/detalles']);
-            this.dbService.emitirCambiosEnUsuario();
+            this.errorService.showInfo(); //muestra info
+            this.showmodalInfo = this.errorService.mostrarInfo;
+            setTimeout(() =>{
+              this.errorService.showInfo(); //tras un tiempo desactiva info
+              this.showmodalInfo = this.errorService.mostrarInfo
+              this.router.navigate(['/detalles']);
+              this.dbService.emitirCambiosEnUsuario();
+            }, 2000)
           }else{
             localStorage.clear();
           }

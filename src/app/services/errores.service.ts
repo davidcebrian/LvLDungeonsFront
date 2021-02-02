@@ -7,8 +7,8 @@ import { Injectable } from '@angular/core';
 //servicio que sirve para cambiar valores a la hora de mostrar o no mostrar infos o errores
 export class ErroresService {
 
-  mostrarError: boolean = false;
-  mostrarInfo: boolean = false;
+  mostrarError: boolean = false; //para mostrar error
+  mostrarInfo: boolean = false; //para mostrar info
 
   showError(){
     this.mostrarError = !this.mostrarError;

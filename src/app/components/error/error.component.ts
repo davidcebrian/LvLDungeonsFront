@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './error.component.html',
   styleUrls: ['./error.component.css']
 })
+
+//Mensaje de error
 export class ErrorComponent implements OnInit {
 
   constructor() { }
