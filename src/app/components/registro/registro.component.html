@@ -7,7 +7,7 @@
 <div class="h-screen bg-cover registro">
   <!-- div contenedor-->
     <div class="container mx-auto h-full flex flex-1 justify-center items-center">
-        <div class=" w-full max-w-2xl md:flex m-0 divide-x divide-black">
+        <div class=" w-full max-w-2xl md:flex m-0 divide-x divide-black flex justify-center">
           <!-- tarjeta de la parte izquierda -->
             <div class="hidden md:flex flex-col w-3/5 bg-white rounded-l shadow-xl op-92 p-3">
                 <h1 class="text-3xl font-extrabold">Bienvenido a LvLDungeons!</h1>
@@ -19,9 +19,7 @@
                 <img class="m-0 p-0 shadow-xl rounded" src="/assets/images/img2.jpg" alt="Imagen de pasillos oscuros de mazmorra">
             </div>
             <!-- Div de la parte derecha, recoge el formulario-->
-            <div class="leading-loose flex items-center justify-center">
-
-              <div class="w-11/12 p-12 bg-white sm:w-8/12 md:w-1/2 lg:w-8/12 shadow-xl rounded-r divide-y divide-black op-92">
+                <div class="w-11/12 p-12 bg-white sm:w-8/12 md:w-1/2 lg:w-8/12 shadow-xl rounded-r divide-y divide-black op-92">
                 <form [formGroup]="registerForm" class="mt-6">
                   <p class="text-black text-center text-lg font-bold">REGISTRO</p>
                   <!--input nombre-->
@@ -105,19 +103,19 @@
                       </button>
                     </div>
                   </form>
-                </div>
-            </div>
                   <!--div que contiene el botón para ir al login-->
-            <div id="login">
-                <br>
-                <h5>¿Ya tienes una cuenta?</h5>
-                <br>
-                <!--boton para ir al login-->
-                <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 hover:bg-gray-800 rounded"
-                routerLink="/login">Iniciar Sesion</button>
+                <div id="login">
+                  <br>
+                  <h5>¿Ya tienes una cuenta?</h5>
+                  <br>
+                  <!--boton para ir al login-->
+                  <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 hover:bg-gray-800 rounded"
+                  routerLink="/login">Iniciar Sesion</button>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
-</div>
-<footer></footer>
-
+        <footer></footer>
+        
+        
