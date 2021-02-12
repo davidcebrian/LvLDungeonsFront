@@ -5,7 +5,7 @@
   <div class="container mx-auto h-full flex flex-1 justify-center items-center">
       <div class="w-full max-w-2xl md:flex m-0 divide-x divide-black justify-center">
         <!-- tarjeta de la parte izquierda -->
-        <div class="hidden md:flex flex-col w-56 bg-white rounded-l shadow-xl op-92 p-3">
+        <div class="tarjeta-ParteIzquierda">
           <h1 class="text-3xl font-extrabold">Bienvenido a LvLDungeons!</h1>
           <br><hr><br>
           <h6>Explora las mazmorras detrás de las puertas y derrota los monstruos para conseguir los tesoros
@@ -16,7 +16,7 @@
         </div>
         <!-- Div de la parte derecha, recoge el formulario-->
         <div class="leading-loose flex items-center justify-center">
-          <form class="max-w-sm m-0 p-10 bg-white op-92 rounded-r shadow-xl divide-y divide-black" [formGroup]="loginForm">
+          <form class="tarjeta-FormularioLogin" [formGroup]="loginForm">
               <div id="login">
                 <p class="text-black text-center text-lg font-bold">LOGIN</p>
                 <!--input nickname-->
@@ -24,9 +24,7 @@
                   <label class="block text-xs font-semibold text-gray-600 uppercase" for="usuario">Nickname</label>
                   <!--Si el input no es válido el borde se vuelve rojo-->
                   <input [class]="this.loginForm.controls.usuario.invalid && this.loginForm.controls.usuario.value != '' 
-                  ? 'w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white border-solid border-red-500 border-2'
-                  : 'w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white'"
-                  type="text" id="usuario"  placeholder="Nickname" aria-label="username" formControlName="usuario">
+                  ? 'inputInvalido' : 'inputValido'" type="text" id="usuario"  placeholder="Nickname" aria-label="username" formControlName="usuario">
                 </div>
                 <div class="mt-2">
                   <!--Input contraseña-->
@@ -35,9 +33,7 @@
                     <!--Si el input no es válido el borde se vuelve rojo y según el atributo ocultarPass se muestra la pass o no
                     cambiándolo con un botón dentro del input-->
                     <input [class]="this.loginForm.controls.password.invalid && this.loginForm.controls.password.value != ''  
-                    ? 'w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white border-solid border-red-500 border-2' 
-                    : 'w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white'"
-                    [type]="ocultarPass ? 'password': 'text'" id="password" placeholder="Password" arial-label="password" formControlName="password">
+                    ? 'inputInvalido' : 'inputValido'" [type]="ocultarPass ? 'password': 'text'" id="password" placeholder="Password" arial-label="password" formControlName="password">
                     <span class="absolute inset-y-0 right-0 mx-3 flex items-center pl-2">
                       <button class="" *ngIf="!ocultarPass" (click)="ocultarPass = !ocultarPass">
                         <img src="../../../assets/images/baseline_visibility_black_18dp.png" alt="boton visibilidad contraseña">
@@ -49,15 +45,15 @@
                       </div>
                 </div>
                 <!--Botón de login, disabled si el formulario no es válido, mensajes de error por encima-->
-                <div class="mt-4 items-center flex flex-col justify-between">
+                <div class="btn-Formulario">
                   <p *ngIf="error" class="text-red-700 text-sm">{{mensaje}}</p>
                   <button [disabled]="loginForm.invalid" (click)="login()"
-                  [class]="loginForm.invalid ? 'cursor-default px-4 py-1 text-white font-light tracking-wider bg-gray-600 rounded' : 'px-4 py-1 text-white font-light tracking-wider bg-gray-900 hover:bg-gray-800 rounded'">
+                  [class]="loginForm.invalid ? 'btn-registroInActivo' : 'btn-registroActivo'">
                     Log in
                   </button>
                 </div>
                 <div class="text-center">
-                  <a class="cursor-pointer text-blue-600 inline-block right-0 align-baseline font-light text-sm text-500 hover:text-red-400">
+                  <a class="option-OlvidarPassLogin">
                     Olvidaste la contraseña?
                   </a>
                 </div>
@@ -68,7 +64,7 @@
                   <h5 class="font-bold">¿Eres nuevo?</h5>
                   <br>
                   <!--Botón te redirige al registro-->
-                  <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 hover:bg-gray-800 rounded"
+                  <button class="btn-CambioFormulario"
                   routerLink="/registro">Crear nueva cuenta</button>
                 </div>
               </form>

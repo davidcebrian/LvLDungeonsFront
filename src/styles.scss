@@ -4,7 +4,6 @@
 
 @import 'tailwindcss/utilities';
 
-
 .he-100{
     height: 100vh;
 }
@@ -63,3 +62,169 @@ input, textarea {
     display: block;
     right: 5px;
   }
+
+
+/***************************Estilos para los componentes de registro/Login y su botón*******************************/
+
+//Este es el usado si el input no está adecuadamente relleno
+.inputInvalido {
+
+    @apply w-full px-5 py-1 text-gray-700 rounded outline-none bg-white border-solid border-red-500 border-2;
+    @apply bg-gray-300;
+
+    }
+
+//Este es el usado si el input está adecuadamente relleno
+
+.inputValido{
+
+    @apply w-full px-5 py-1 text-gray-700 rounded outline-none bg-white;
+    @apply bg-gray-300;
+}
+
+
+//Boton de registro deshabilitado
+.btn-registroInActivo{
+
+    @apply cursor-default px-4 py-1 text-white font-light tracking-wider bg-gray-600 rounded mt-4 mb-4;
+}
+
+//Boton de registro habilitado
+.btn-registroActivo{
+
+    @apply px-4 py-1 text-white font-light tracking-wider bg-gray-900 mt-4 mb-4 rounded;
+}
+
+.labelFormulario{
+
+    @apply block mt-2 text-xs font-semibold text-gray-600 uppercase;
+}
+
+//Boton de Regsitro para enviar la peticion con los datos del formulario
+.btn-Formulario{
+
+    @apply mt-4 items-center flex flex-col justify-between;
+}
+
+//Boton usado para cambiar del formulario de Login al de Registro y viceversa
+.btn-CambioFormulario{
+
+    @apply px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded;
+}
+
+
+.tarjeta-FormularioRegistro{
+
+    @apply w-11/12 p-12 bg-white shadow-xl rounded-r op-92;
+}
+
+
+.tarjeta-ParteIzquierda{
+
+    @media (max-width: 768px) { display: none; }
+    @apply flex flex-col w-3/5 bg-white rounded-l shadow-xl op-92 p-3;
+    
+}
+
+
+.tarjeta-FormularioLogin{
+
+    @apply max-w-sm m-0 p-10 bg-white op-92 rounded-r shadow-xl ;
+}
+
+
+.option-OlvidarPassLogin{
+
+    @apply cursor-pointer text-blue-600 inline-block right-0 align-baseline font-light text-sm;
+
+}
+
+
+/**********************************Estilos header**********************************/
+
+.nav-Header{
+
+    @apply flex items-center bg-gray-800 p-3 flex-wrap;
+}
+
+
+.span-TituloHeader{
+
+    @apply text-xl text-white font-bold uppercase tracking-wide;
+}
+
+
+.btn-MenuHeader{
+
+    @apply text-white inline-flex p-3 bg-gray-900 rounded ml-auto outline-none;
+}
+
+.div-navigationHeader{
+    @apply hidden w-full flex-grow;
+}
+
+.div-UserLoggedHeader{
+
+    @apply inline-flex ml-auto w-auto items-center flex-col h-auto;
+}
+
+.cerrarSesionHeader{
+
+    @apply bg-gray-400 py-2 px-4 block whitespace-no-wrap cursor-pointer;
+}
+
+
+/**********************************Estilos Footer************************************************/
+
+.div-Footer{
+
+    @apply bg-gray-900 text-white;
+}
+
+.div-ParteSuperiorFooter{
+
+    @apply text-center bg-purple;
+}
+
+.div-GitHub{
+
+    @apply mb-4;
+}
+
+.iconosFooter{
+
+    @apply text-center;
+}
+
+.divLinks{
+
+    @apply flex mt-8 text-center;
+}
+
+divContainer{
+
+    @apply flex; 
+    @apply flex-wrap;
+    @apply justify-center;
+    @apply mx-auto;
+    @apply px-6;
+    
+}
+
+.seccionesFooter{
+
+    @apply w-full my-4;
+
+    @media (min-width: 640px) { width: 100% }
+    @media (min-width: 768px) { width: 50% }
+    @media (min-width: 1024px){ width: 25% }
+
+ }
+
+ .hr-Footer{
+
+    @apply mb-4 mt-0 inline-block mx-auto;
+ }
+
+
+ 
