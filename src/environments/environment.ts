@@ -10,7 +10,8 @@ export const environment = {
 export const urls = {
   local:  'http://localhost:8080',
   servidor: 'http://vps-6874d3d9.vps.ovh.net',
-  ruben: 'http://172.16.9.55:8080'
+  ruben: 'http://172.16.9.55:8080',
+  rizo: 'http://172.16.9.46:8080'
 }
 
 

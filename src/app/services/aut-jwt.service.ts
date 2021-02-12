@@ -9,6 +9,8 @@ export class AutJwtService {
 
   constructor() { }
 
+
+  /**Comprueba JWT y recoge cambios de usuario. */
   /**Guarda el token en el localStorage */
   guardarJwt(token: string, id: string){
     localStorage.setItem("jwt", token);

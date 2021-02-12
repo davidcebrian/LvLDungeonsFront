@@ -19,8 +19,6 @@ import { FormularioComponent } from './components/formulario/formulario.componen
 import { LoginComponent } from './components/login/login.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { RegistroComponent } from './components/registro/registro.component';
-import { ErrorComponent } from './components/error/error.component';
-import { InfoComponent } from './components/info/info.component';
 
 @NgModule({
   declarations: [
@@ -35,10 +33,7 @@ import { InfoComponent } from './components/info/info.component';
     EntidadesComponent,
     LoginComponent,
     InicioComponent,
-    RegistroComponent,
-    ErrorComponent,
-    InfoComponent
-   
+    RegistroComponent
   ],
   imports: [
     BrowserModule,

@@ -2,7 +2,23 @@
 <!--Si existe usuario autenticado muestra esto -->
 <div *ngIf = "this.usuarioAutenticado != null && compruebaJwt() == true">
     <h1>ESTÁS DENTRO {{this.usuarioAutenticado.username}} !!</h1>
+    <form [formGroup]='formPartida'>
+
+        <button (click)='crearPartida()'>CREAR</button>
+        <input type="text" name="token" id="token" formControlName='token'>
+        <button (click)='unirsePartida()'>UNIRSE</button>
+        <button (click)='listoPartida()'>LISTO</button>
+    </form>
+    <div *ngIf="partida != null">
+        {{this.partida}}
+    </div>
 </div>
+
+
+
+
+
+
 <!--Si no existe usuario autenticado muestra esto -->
 <div *ngIf = "this.usuarioAutenticado == null && compruebaJwt() == false">
     <h1>No tienes acceso! Ingresa desde <button class="btn btn-primary" routerLink="/login">AQUÍ</button></h1>

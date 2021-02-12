@@ -22,10 +22,6 @@ export class RegistroComponent implements OnInit {
   mensaje:string;
   error:boolean = false;
 
-  //modal mostrar errores
-  showmodalError: boolean = false;
-  showmodalInfo: boolean = false;
-
   constructor(private build: FormBuilder, private userService: DatabaseService, private router: Router, 
               private errorService: ErroresService) {}
 
@@ -73,25 +69,14 @@ export class RegistroComponent implements OnInit {
         this.error = true;
       }
       else if (data != undefined) {
-        this.errorService.showInfo(); //muestra info
-        this.showmodalInfo = this.errorService.mostrarInfo;
-        setTimeout(() => {
-          this.errorService.showInfo(); //tras un tiempo desactiva info
-          this.showmodalInfo = this.errorService.mostrarInfo
-          this.router.navigate(['/login']);
-        }, 4000);
+      this.errorService.RegistroCorrecto('/login')  //muestra informacion con sweetalert
         }else{
           localStorage.clear();
         }
     },
     error => {
       if(error != null){
-        this.errorService.showError(); //muestra error
-        this.showmodalError = this.errorService.mostrarError
-        setTimeout(() => {
-          this.errorService.showError(); //tras un tiempo desactiva error
-          this.showmodalError = this.errorService.mostrarError
-        }, 7000);
+        this.errorService.ErrorInesperado();  //muestra el error con sweetalert
       } 
     }
     )

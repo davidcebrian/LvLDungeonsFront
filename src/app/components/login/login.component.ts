@@ -26,11 +26,6 @@ export class LoginComponent implements OnInit {
   mensaje:string;
   error:boolean = false;
 
-  //bool para indicar mostrar errores
-  showmodalError: boolean = false;
-  //bool para indicar mostrar errores
-  showmodalInfo: boolean = false;
-
   
   constructor(private router: Router, private autJwtService: AutJwtService,
     private dbService: DatabaseService, private errorService: ErroresService) { }
@@ -52,14 +47,7 @@ export class LoginComponent implements OnInit {
         else if (data != undefined) {
           this.autJwtService.guardarJwt(data.jwt, data.id);
           if(localStorage.getItem("jwt") != ""){
-            this.errorService.showInfo(); //muestra info
-            this.showmodalInfo = this.errorService.mostrarInfo;
-            setTimeout(() =>{
-              this.errorService.showInfo(); //tras un tiempo desactiva info
-              this.showmodalInfo = this.errorService.mostrarInfo
-              this.router.navigate(['/detalles']);
-              this.dbService.emitirCambiosEnUsuario();
-            }, 2000)
+          this.errorService.LoginCorrecto('/detalles')
           }else{
             localStorage.clear();
           }
@@ -67,13 +55,7 @@ export class LoginComponent implements OnInit {
       },
       error => {
         if(error != null){
-          console.log(error);
-          this.errorService.showError(); //muestra error
-          this.showmodalError = this.errorService.mostrarError
-          setTimeout(() => {
-            this.errorService.showError(); //tras un tiempo desactiva error
-            this.showmodalError = this.errorService.mostrarError
-          }, 7000);
+          this.errorService.ErrorInesperado()
         } 
       }
     )

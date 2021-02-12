@@ -22,6 +22,12 @@ export class DatabaseService {
 
   constructor( private http: HttpClient) { }
 
+  /**Para comprobar que existe el jwt del usuario que este autenticado */
+  compruebaJwt():boolean{
+    if(localStorage.getItem("jwt")!=null) return true;
+    else return false;
+  }
+
   /**Pâra realizar la peticion de autenticación del usuario, cogiendo la pass codificada en md5 */
   login(nick: string, pass: string): Observable<any> {
     const md5 = new Md5();
@@ -55,7 +61,7 @@ export class DatabaseService {
     })
   }
 
-  /**Recoger usuarios */
+  /**Recoger usuario2 */
   pruebaGetUsers( id: number): Observable<any> {
     return this.http.get(this.infoEndP + `/${id}`);
   }
