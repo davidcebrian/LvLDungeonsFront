@@ -15,27 +15,25 @@ import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms'
 export class DetallesComponent implements OnInit {
 
   usuarioAutenticado: User;
-  /**
-   * 
+  
    partida: Partida = null;
    webSocketApi: WebSocketAPI;
    formPartida: FormGroup;
-   */
+   
   constructor(private router:Router, 
               private dbService: DatabaseService,
-              /**
-               * 
+              
                private partidaService: PartidaServiceService,
                private webSocket: WebSocketAPI,
                private build: FormBuilder
-               */) { 
-              /**
-               * 
+               ) { 
+              
+               
                 this.formPartida = this.build.group({
                 listo:[''],
                 token: [''],
                 })
-                */
+                
               }
   
 
@@ -57,22 +55,23 @@ export class DetallesComponent implements OnInit {
     else return false;
   }
 
-/**
- * 
- crearPartida():void {
-   this.partidaService.iniciarPartida().subscribe(res => {
-     this.partida = res;
-     this.webSocket._connect(res.token);
-     this.partida = this.webSocket.partida;
+
+  crearPartida():void {
+    this.partidaService.iniciarPartidaVoid().subscribe(res => {
+      console.log(res);
+    this.partida = res;
+    console.log(this.partida.token);
+    this.webSocket._connect(this.partida.token);
+    this.partida = this.webSocket.partida;
     })
-    
   }
   
   unirsePartida( ):void {
-    this.partidaService.iniciarPartida(null, this.formPartida.controls.token.value ).subscribe(res => {
+    this.partidaService.iniciarPartidaToken( this.formPartida.controls.token.value ).subscribe(res => {
       this.partida = res;
-      this.webSocket._connect(res.token);
+      /*this.webSocket._connect(res.token)*/;
       this.webSocket._send(res);
+      console.log(res);
       this.partida = this.webSocket.partida;
     })
   }
@@ -80,11 +79,12 @@ export class DetallesComponent implements OnInit {
   listoPartida():void {
     this.partidaService.iniciarPartida(this.formPartida.controls.listo.value, this.formPartida.controls.token.value).subscribe(res => {
       this.partida = res;
-      this.webSocket._connect(res.token);
+      /*this.webSocket._connect(res.token)*/;
       this.webSocket._send(res);
+      console.log(res);
       this.partida = this.webSocket.partida;
     })
   }
-  */
+  
   
 }

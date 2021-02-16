@@ -4,13 +4,16 @@
     <h1>ESTÁS DENTRO {{this.usuarioAutenticado.username}} !!</h1>
     <form [formGroup]='formPartida'>
 
-        <button (click)='crearPartida()'>CREAR</button>
+        <button class="btn-registroActivo" (click)='crearPartida()'>CREAR</button>
         <input type="text" name="token" id="token" formControlName='token'>
-        <button (click)='unirsePartida()'>UNIRSE</button>
-        <button (click)='listoPartida()'>LISTO</button>
+        <button class="btn-registroActivo"  (click)='unirsePartida()'>UNIRSE</button>
+        <button class="btn-registroActivo m-5" (click)='listoPartida()'>LISTO</button>
     </form>
     <div *ngIf="partida != null">
-        {{this.partida}}
+        {{this.partida.personajes}}
+        {{this.partida.iniciada}}
+        {{this.partida.token}}
+        {{this.partida.idOwner}}
     </div>
 </div>
 

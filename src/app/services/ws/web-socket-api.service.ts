@@ -11,7 +11,7 @@ import { Partida } from 'src/app/interfaces/userInterface';
 
 export class WebSocketAPI {
     webSocketEndPoint: string = '/prueba-websocket';
-    topic: string = 'topic/partida/'
+    topic: string = '/topic/partida/'
     stompClient: any;
     partida: Partida;
 
@@ -20,11 +20,12 @@ export class WebSocketAPI {
     }
     _connect(tokenPartida: String) {
         console.log("Initialize WebSocket Connection");
-        let ws = new SockJS(this.topic);
+        let ws = new SockJS('http://172.16.9.46:8080' + this.webSocketEndPoint);
         this.stompClient = Stomp.over(ws);
         const _this = this;
         _this.stompClient.connect({}, (frame)  => {
-            _this.stompClient.subscribe(this.topic + tokenPartida, (sdkEvent) => {
+            _this.stompClient.subscribe(this.topic /*tokenPartida*/, (sdkEvent) => {
+                console.log(sdkEvent)
                 _this.partida = JSON.parse(sdkEvent.body);
             });
             //_this.stompClient.reconnect_delay = 2000;

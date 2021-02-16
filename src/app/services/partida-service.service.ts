@@ -13,7 +13,7 @@ export class PartidaServiceService {
   
   constructor( private http: HttpClient, private db: DatabaseService ) { }
 
-  iniciarPartida(listoPartida?:boolean, tokenPartida?: String): Observable<Partida> {
+  iniciarPartida(listoPartida:boolean, tokenPartida: String): Observable<Partida> {
 
     let body: PersonajePartida = {
       listo: listoPartida,
@@ -25,8 +25,26 @@ export class PartidaServiceService {
     })
   }
 
+  iniciarPartidaToken(tokenPartida: String): Observable<Partida> {
 
+    let body: PersonajePartida = {
+      token: tokenPartida,
+    }
 
+    return this.http.put<Partida>(this.endP + '/' + localStorage.getItem('id'), body).pipe(partida => {
+      return partida;
+    })
+  }
+
+  iniciarPartidaVoid(): Observable<Partida> {
+
+    let body: PersonajePartida = {
+    }
+
+    return this.http.put<Partida>(this.endP + '/' + localStorage.getItem('id'), body).pipe(partida => {
+      return partida;
+    })
+  }
 
 
 
