@@ -16,21 +16,20 @@ export class DetallesComponent implements OnInit {
 
   usuarioAutenticado: User;
   
-   partida: Partida = null;
-   webSocketApi: WebSocketAPI;
-   formPartida: FormGroup;
-   
+  partida: Partida = null;
+  webSocketApi: WebSocketAPI;
+  formPartida: FormGroup;
+  
   constructor(private router:Router, 
               private dbService: DatabaseService,
               
-               private partidaService: PartidaServiceService,
-               private webSocket: WebSocketAPI,
-               private build: FormBuilder
-               ) { 
+              private partidaService: PartidaServiceService,
+              private webSocket: WebSocketAPI,
+              private build: FormBuilder
+              ) { 
               
-               
+              
                 this.formPartida = this.build.group({
-                listo:[''],
                 token: [''],
                 })
                 
@@ -69,20 +68,25 @@ export class DetallesComponent implements OnInit {
   unirsePartida( ):void {
     this.partidaService.iniciarPartidaToken( this.formPartida.controls.token.value ).subscribe(res => {
       this.partida = res;
-      /*this.webSocket._connect(res.token)*/;
-      this.webSocket._send(res);
+      this.webSocket._connect(res.token);
+      setTimeout(r => {
+        this.webSocket._send(res)
+        this.partida = this.webSocket.partida;
+      },1000);
       console.log(res);
-      this.partida = this.webSocket.partida;
     })
   }
 
   listoPartida():void {
-    this.partidaService.iniciarPartida(this.formPartida.controls.listo.value, this.formPartida.controls.token.value).subscribe(res => {
+    this.partidaService.iniciarPartida(true, this.formPartida.controls.token.value).subscribe(res => {
       this.partida = res;
-      /*this.webSocket._connect(res.token)*/;
-      this.webSocket._send(res);
+      this.webSocket._connect(res.token);
       console.log(res);
-      this.partida = this.webSocket.partida;
+      setTimeout(r => {
+        this.webSocket._send(res)
+        this.partida = this.webSocket.partida;
+      }
+      , 1000)
     })
   }
   
