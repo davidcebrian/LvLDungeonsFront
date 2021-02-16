@@ -1,0 +1,53 @@
+
+.tarjeta-FormularioRegistro{
+
+  @apply w-11/12 p-12 bg-white shadow-xl rounded-r op-92;
+}
+
+
+.tarjeta-ParteIzquierda{
+
+  @apply flex flex-col w-3/5 bg-white rounded-l shadow-xl op-92 p-3;
+
+}
+
+.tarjeta-FormularioLogin{
+
+  @apply max-w-sm m-0 p-10 bg-white op-92 rounded-r shadow-xl ;
+}
+
+.tarjeta-contenedor {
+  @media (max-width: 768px) {
+    @apply w-full;
+    height: auto;
+   }
+  @apply flex flex-col flex-no-wrap justify-between w-3/4 p-8 py-4 bg-white rounded shadow-xl op-92 border-black;
+  height: fit-content;
+}
+
+.tarjeta-titulo {
+  @apply text-2xl font-semibold text-center;
+}
+
+.tarjeta-contenido {
+  @apply flex-col flex-no-wrap  justify-between mt-8 text-justify text-base h-auto;
+}
+
+.tarjeta-contenido-titulo {
+  @apply text-xl font-semibold text-center pb-4;
+}
+
+.tarjeta-contenido-parrafo {
+  @apply mb-8;
+}
+
+.tarjeta-contenido-parrafo-desaparecer {
+  @apply mb-8;
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.tarjeta-acciones {
+  @apply flex flex-row flex-wrap justify-around w-full h-auto;
+}
