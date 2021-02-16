@@ -47,6 +47,10 @@ export class DetallesComponent implements OnInit {
         this.usuarioAutenticado = usuario;
       });
     }
+
+    this.webSocketApi.cambiosEnPartida.subscribe(newPartida => {
+      this.partida = newPartida;
+    })
   }
   /**Para comprobar que existe el jwt del usuario que este autenticado */
   compruebaJwt():boolean{
@@ -61,7 +65,6 @@ export class DetallesComponent implements OnInit {
     this.partida = res;
     console.log(this.partida.token);
     this.webSocket._connect(this.partida.token);
-    this.partida = this.webSocket.partida;
     })
   }
 
@@ -71,7 +74,6 @@ export class DetallesComponent implements OnInit {
       this.webSocket._connect(res.token);
       setTimeout(r => {
         this.webSocket._send(res)
-        this.partida = this.webSocket.partida;
       },1000);
       console.log(res);
     })
@@ -84,7 +86,6 @@ export class DetallesComponent implements OnInit {
       console.log(res);
       setTimeout(r => {
         this.webSocket._send(res)
-        this.partida = this.webSocket.partida;
       }
       , 1000)
     })

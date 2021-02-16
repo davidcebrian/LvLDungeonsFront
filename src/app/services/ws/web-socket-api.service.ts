@@ -1,9 +1,10 @@
 
 import * as Stomp from '../../../../node_modules/stompjs';
 import * as SockJS from '../../../../node_modules/sockjs-client';
-import { Injectable } from '@angular/core';
-import { Partida } from 'src/app/interfaces/userInterface';
-
+import { EventEmitter, Injectable, Output } from '@angular/core';
+import { Partida, PersonajePartida } from 'src/app/interfaces/userInterface';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -15,9 +16,17 @@ export class WebSocketAPI {
     stompClient: any;
     partida: Partida;
 
-    constructor( ){
+    @Output()
+    cambiosEnPartida = new EventEmitter<Partida>();
+
+    constructor(private http: HttpClient){
         
     }
+
+    emitirCambiosPartida(): void{
+        this.cambiosEnPartida.emit(this.partida);
+    }
+
     _connect(tokenPartida: String) {
         console.log("Initialize WebSocket Connection");
         let ws = new SockJS('http://172.16.9.46:8080' + this.webSocketEndPoint);
@@ -27,6 +36,10 @@ export class WebSocketAPI {
             _this.stompClient.subscribe(this.topic /*tokenPartida*/, (sdkEvent) => {
                 console.log(sdkEvent)
                 _this.partida = JSON.parse(sdkEvent.body);
+                setTimeout(() => {
+                    this.emitirCambiosPartida()
+                },1000);
+                
             });
             //_this.stompClient.reconnect_delay = 2000;
         });

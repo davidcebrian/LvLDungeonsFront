@@ -9,6 +9,7 @@
         <button class="btn-registroActivo"  (click)='unirsePartida()'>UNIRSE</button>
         <button class="btn-registroActivo m-5" (click)='listoPartida()'>LISTO</button>
     </form>
+    
     <div *ngIf="partida != null">
         <p *ngFor="let personaje of partida.personajes">{{personaje.id}}, {{personaje.empezarPartida}}</p>
         <br>
