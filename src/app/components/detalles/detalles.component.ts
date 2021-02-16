@@ -35,9 +35,9 @@ export class DetallesComponent implements OnInit {
                 })
                 
               }
-  
 
-              
+
+
   /**Recoge los cambios cuando se identifica un usuario o se desconecta el mismo y lo guarda */
   ngOnInit(): void {
     this.dbService.cambiosEnUsuario.subscribe( nuevoUser => {
@@ -65,7 +65,7 @@ export class DetallesComponent implements OnInit {
     this.partida = this.webSocket.partida;
     })
   }
-  
+
   unirsePartida( ):void {
     this.partidaService.iniciarPartidaToken( this.formPartida.controls.token.value ).subscribe(res => {
       this.partida = res;
@@ -75,7 +75,7 @@ export class DetallesComponent implements OnInit {
       this.partida = this.webSocket.partida;
     })
   }
-  
+
   listoPartida():void {
     this.partidaService.iniciarPartida(this.formPartida.controls.listo.value, this.formPartida.controls.token.value).subscribe(res => {
       this.partida = res;

@@ -8,32 +8,22 @@ import { Md5 } from 'ts-md5/dist/md5';
 
 
 import { AppComponent } from './app.component';
-import { GetUsersComponent } from './components/get-users/get-users.component';
-import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { DetallesComponent } from './components/detalles/detalles.component';
-import { TablaComponent } from './components/tabla/tabla.component';
-import { EntidadesComponent } from './components/entidades/entidades.component';
-import { FormularioComponent } from './components/formulario/formulario.component';
 import { LoginComponent } from './components/login/login.component';
-import { InicioComponent } from './components/inicio/inicio.component';
 import { RegistroComponent } from './components/registro/registro.component';
+import { InicioComponent } from './components/inicio/inicio.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GetUsersComponent,
-    HomeComponent,
     HeaderComponent,
     FooterComponent,
     DetallesComponent,
-    TablaComponent,
-    FormularioComponent,
-    EntidadesComponent,
     LoginComponent,
-    InicioComponent,
-    RegistroComponent
+    RegistroComponent,
+    InicioComponent
   ],
   imports: [
     BrowserModule,

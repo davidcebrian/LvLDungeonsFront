@@ -1,6 +1,5 @@
-<header></header>
 
-<div class="h-screen bg-cover registro">
+<div class="h-screen bg-cover background">
   <!-- div contenedor-->
     <div class="container mx-auto h-full flex flex-1 justify-center items-center">
         <div class=" w-full max-w-2xl md:flex m-0 divide-x divide-black flex justify-center">
@@ -21,35 +20,35 @@
                   <!--input nombre-->
                   <label for="nombre" class="labelFormulario">Nombre</label>
                   <!--Si el input no es válido el borde se vuelve rojo-->
-                  <input [class]="this.registerForm.controls.nombre.invalid && this.registerForm.controls.nombre.value != '' 
+                  <input [class]="this.registerForm.controls.nombre.invalid && this.registerForm.controls.nombre.value != ''
                   ? 'inputInvalido' : 'inputValido'" type="text" formControlName="nombre" id="inputNombre" placeholder="Nombre">
-                  
+
                   <!--input de edad-->
                   <label for="lastname" class="labelFormulario">Edad</label>
                   <!--Si el input no es válido el borde se vuelve rojo-->
-                  <input [class]="this.registerForm.controls.edad.invalid && this.registerForm.controls.edad.value != '' 
+                  <input [class]="this.registerForm.controls.edad.invalid && this.registerForm.controls.edad.value != ''
                   ? 'inputInvalido' : 'inputValido'" type="number" formControlName="edad" id="inputEdad" placeholder="Edad">
-                  
+
                   <!--input email-->
                   <label for="email" class="labelFormulario">E-mail</label>
                   <!--Si el input no es válido el borde se vuelve rojo-->
-                  <input [class]="this.registerForm.controls.email.invalid && this.registerForm.controls.email.value != '' 
+                  <input [class]="this.registerForm.controls.email.invalid && this.registerForm.controls.email.value != ''
                   ? 'inputInvalido' : 'inputValido'" type="text" formControlName="email" id="inputEmail" placeholder="Email">
-                  
+
                   <!--input nickname-->
                   <label for="inputNickname" class="labelFormulario">Nickname</label>
                   <!--Si el input no es válido el borde se vuelve rojo-->
-                  <input [class]="this.registerForm.controls.username.invalid && this.registerForm.controls.username.value != '' 
+                  <input [class]="this.registerForm.controls.username.invalid && this.registerForm.controls.username.value != ''
                   ? 'inputInvalido' : 'inputValido'" type="text" formControlName="username" id="inputNickname" placeholder="Nickname">
-                  
+
                   <!--inout de la contraseña-->
                   <label for="password" class="labelFormulario">Password</label>
                   <div class="relative">
                     <!--Si el input no es válido el borde se vuelve rojo y según el atributo ocultarPass se muestra la pass o no
                       cambiándolo con un botón dentro del input-->
-                      <input [class]="this.registerForm.controls.password.invalid && this.registerForm.controls.password.value != '' 
+                      <input [class]="this.registerForm.controls.password.invalid && this.registerForm.controls.password.value != ''
                       ? 'inputInvalido' : 'inputValido'" [type]="ocultarPass ? 'password': 'text'" formControlName="password" id="inputPasword" placeholder="Contraseña">
-                      
+
                       <span class="absolute inset-y-0 right-0 mx-3 flex items-center pl-2">
                         <button class="" *ngIf="!ocultarPass" (click)="ocultarPass = !ocultarPass">
                           <img src="../../../assets/images/baseline_visibility_black_18dp.png" alt="Icono visibilidad contraseña">
@@ -59,13 +58,13 @@
                         </button>
                       </span>
                     </div>
-                    
+
                     <!--input confirmar contraseña-->
                     <label for="password-confirm" class="labelFormulario">Confirmar password</label>
                     <div class="relative">
                       <!--Si el input no es válido el borde se vuelve rojo y según el atributo ocultarPass se muestra la pass o no
                         cambiándolo con un botón dentro del input-->
-                        <input [class]="this.registerForm.controls.repetir_password.invalid && this.registerForm.controls.repetir_password.value != '' 
+                        <input [class]="this.registerForm.controls.repetir_password.invalid && this.registerForm.controls.repetir_password.value != ''
                         ? 'inputInvalido' : 'inputValido'" [type]="ocultarPassRep ? 'password': 'text'" formControlName="repetir_password" id="inputPaswordConf" placeholder="Confirmar Contraseña">
                         <span class="absolute inset-y-0 right-0 mx-3 flex items-center pl-2">
                           <button class="" *ngIf="!ocultarPassRep" (click)="ocultarPassRep = !ocultarPassRep">
@@ -76,7 +75,7 @@
                           </button>
                         </span>
                       </div>
-                      
+
                       <!--boton de resgistro que llama al servicio que lanza la petición al back-->
                       <div class="btn-Formulario">
                         <p *ngIf="registerForm.controls.repetir_password.errors != null && registerForm.controls.repetir_password.errors.passwordMismatch" class="text-red-700 text-sm">Las contraseñas no coinciden</p>
@@ -100,6 +99,4 @@
             </div>
           </div>
         </div>
-        <footer></footer>
-        
-        
+

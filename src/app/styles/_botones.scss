@@ -1,0 +1,27 @@
+//Boton de registro habilitado
+.btn-registroActivo{
+
+@apply px-4 py-1 text-white font-light tracking-wider bg-gray-900 mt-4 mb-4 rounded;
+}
+
+//Boton de Regsitro para enviar la peticion con los datos del formulario
+.btn-Formulario{
+
+@apply mt-4 items-center flex flex-col justify-between;
+}
+
+//Boton usado para cambiar del formulario de Login al de Registro y viceversa
+.btn-CambioFormulario{
+
+@apply px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded;
+}
+
+//Boton de registro deshabilitado
+.btn-registroInActivo{
+
+@apply cursor-default px-4 py-1 text-white font-light tracking-wider bg-gray-600 rounded mt-4 mb-4;
+}
+
+.boton-home {
+  @apply px-6 py-3 text-white font-light tracking-wider bg-gray-900 mt-4 mb-4 rounded;
+}

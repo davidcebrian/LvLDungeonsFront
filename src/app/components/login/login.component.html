@@ -1,6 +1,5 @@
-<header></header>
 
-<div class="h-screen font-sans login bg-cover">
+<div class="h-screen font-sans background bg-cover">
   <!-- div contenedor-->
   <div class="container mx-auto h-full flex flex-1 justify-center items-center">
       <div class="w-full max-w-2xl md:flex m-0 divide-x divide-black justify-center">
@@ -23,7 +22,7 @@
                 <div class="">
                   <label class="block text-xs font-semibold text-gray-600 uppercase" for="usuario">Nickname</label>
                   <!--Si el input no es válido el borde se vuelve rojo-->
-                  <input [class]="this.loginForm.controls.usuario.invalid && this.loginForm.controls.usuario.value != '' 
+                  <input [class]="this.loginForm.controls.usuario.invalid && this.loginForm.controls.usuario.value != ''
                   ? 'inputInvalido' : 'inputValido'" type="text" id="usuario"  placeholder="Nickname" aria-label="username" formControlName="usuario">
                 </div>
                 <div class="mt-2">
@@ -32,7 +31,7 @@
                   <div class="relative">
                     <!--Si el input no es válido el borde se vuelve rojo y según el atributo ocultarPass se muestra la pass o no
                     cambiándolo con un botón dentro del input-->
-                    <input [class]="this.loginForm.controls.password.invalid && this.loginForm.controls.password.value != ''  
+                    <input [class]="this.loginForm.controls.password.invalid && this.loginForm.controls.password.value != ''
                     ? 'inputInvalido' : 'inputValido'" [type]="ocultarPass ? 'password': 'text'" id="password" placeholder="Password" arial-label="password" formControlName="password">
                     <span class="absolute inset-y-0 right-0 mx-3 flex items-center pl-2">
                       <button class="" *ngIf="!ocultarPass" (click)="ocultarPass = !ocultarPass">
@@ -72,4 +71,3 @@
           </div>
     </div>
   </div>
-<footer></footer>
