@@ -69,6 +69,10 @@ input, textarea {
     display: block;
     right: 5px;
   }
+.cerrarSesionHeader:hover{
+    background-color: rgb(185, 185, 185);
+}
+
 
 
 /***************************Estilos para los componentes de registro/Login y su botón*******************************/
@@ -107,7 +111,7 @@ input, textarea {
 
 .nav-Header{
 
-    @apply flex items-center bg-gray-800 p-3 flex-wrap;
+    @apply flex items-center bg-gray-800 p-3;
 }
 
 
@@ -123,7 +127,7 @@ input, textarea {
 }
 
 .div-navigationHeader{
-    @apply hidden w-full flex-grow;
+    @apply w-full inline-flex;
 }
 
 .div-UserLoggedHeader{
@@ -133,7 +137,7 @@ input, textarea {
 
 .cerrarSesionHeader{
 
-    @apply bg-gray-400 py-2 px-4 block whitespace-no-wrap cursor-pointer;
+    @apply bg-gray-200 py-2 px-4 block whitespace-no-wrap cursor-pointer shadow-xl;
 }
 
 

@@ -30,6 +30,7 @@ export class HeaderComponent implements OnInit {
 
   desLogear(){
     this.usuarioAutenticado = null;
+    this.dbService.logout();
     localStorage.clear();
     this.router.navigate(['login']);
   }

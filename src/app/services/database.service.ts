@@ -40,15 +40,20 @@ export class DatabaseService {
     )
   }
 
+  logout(){
+    this.usuarioAutenticado = null;
+    this.emitirCambiosEnUsuario;
+  }
+
   /**Recoge los datos del usuario autenticado y si ha registrado algún cambio y emite esos cambios */
   getUsuarioAutenticado() : Observable<User> {
     return this.http.get<User>(this.infoEndP + '/' + localStorage.getItem('id')).pipe(
       tap(userAutenticado => {
         if((this.usuarioAutenticado == null && userAutenticado != null) ||
           (this.usuarioAutenticado != null && userAutenticado == null) ||
-          (this.usuarioAutenticado != null && userAutenticado == null && this.usuarioAutenticado.idUsuario != userAutenticado.idUsuario)) {
-            this.emitirCambiosEnUsuario();
+          (this.usuarioAutenticado != null && userAutenticado != null && this.usuarioAutenticado.idUsuario != userAutenticado.idUsuario)) {
             this.usuarioAutenticado = userAutenticado;
+            this.emitirCambiosEnUsuario();
         }
       })
     );
@@ -56,9 +61,7 @@ export class DatabaseService {
 
   /**Para emitir los cambios en el usuario */
   emitirCambiosEnUsuario() {
-    this.getUsuarioAutenticado().subscribe(userAutenticado => {
-      return this.cambiosEnUsuario.emit(userAutenticado);
-    })
+    this.cambiosEnUsuario.emit(this.usuarioAutenticado);
   }
 
   /**Recoger usuario2 */
