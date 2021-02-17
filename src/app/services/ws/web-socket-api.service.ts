@@ -33,7 +33,7 @@ export class WebSocketAPI {
         this.stompClient = Stomp.over(ws);
         const _this = this;
         _this.stompClient.connect({}, (frame)  => {
-            _this.stompClient.subscribe(this.topic /*tokenPartida*/, (sdkEvent) => {
+            _this.stompClient.subscribe(this.topic + tokenPartida, (sdkEvent) => {
                 console.log(sdkEvent)
                 _this.partida = JSON.parse(sdkEvent.body);
                 setTimeout(() => {
