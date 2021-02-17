@@ -37,9 +37,8 @@ export class WebSocketAPI {
                 console.log(sdkEvent)
                 _this.partida = JSON.parse(sdkEvent.body);
                 setTimeout(() => {
-                    this.emitirCambiosPartida()
+                    this.emitirCambiosPartida()    
                 },1000);
-                
             });
             //_this.stompClient.reconnect_delay = 2000;
         });

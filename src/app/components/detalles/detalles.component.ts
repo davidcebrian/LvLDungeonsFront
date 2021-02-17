@@ -17,7 +17,6 @@ export class DetallesComponent implements OnInit {
   usuarioAutenticado: User;
   
   partida: Partida = null;
-  webSocketApi: WebSocketAPI;
   formPartida: FormGroup;
   
   constructor(private router:Router, 
@@ -47,11 +46,16 @@ export class DetallesComponent implements OnInit {
         this.usuarioAutenticado = usuario;
       });
     }
+    this.cambios();
+  }
 
-    this.webSocketApi.cambiosEnPartida.subscribe(newPartida => {
+  
+  cambios(){
+    this.webSocket.cambiosEnPartida.subscribe(newPartida => {
       this.partida = newPartida;
     })
   }
+
   /**Para comprobar que existe el jwt del usuario que este autenticado */
   compruebaJwt():boolean{
     if(localStorage.getItem("jwt")!=null) return true;
