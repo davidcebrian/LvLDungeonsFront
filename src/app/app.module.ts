@@ -10,7 +10,7 @@ import { Md5 } from 'ts-md5/dist/md5';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { DetallesComponent } from './components/detalles/detalles.component';
+import { LobbyComponent } from './components/lobby/lobby.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { InicioComponent } from './components/inicio/inicio.component';
@@ -20,7 +20,7 @@ import { InicioComponent } from './components/inicio/inicio.component';
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    DetallesComponent,
+    LobbyComponent,
     LoginComponent,
     RegistroComponent,
     InicioComponent

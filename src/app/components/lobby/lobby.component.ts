@@ -8,33 +8,28 @@ import { Partida } from '../../interfaces/userInterface';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
-  selector: 'detalles',
-  templateUrl: './detalles.component.html',
-  styleUrls: ['./detalles.component.scss']
+  selector: 'lobby',
+  templateUrl: './lobby.component.html',
+  styleUrls: ['./lobby.component.scss']
 })
-export class DetallesComponent implements OnInit {
+export class LobbyComponent implements OnInit {
 
   usuarioAutenticado: User;
-  
+
   partida: Partida = null;
   formPartida: FormGroup;
-  
-  constructor(private router:Router, 
+
+  constructor(private router:Router,
               private dbService: DatabaseService,
-              
+
               private partidaService: PartidaServiceService,
               private webSocket: WebSocketAPI,
               private build: FormBuilder
-              ) { 
-              
-              
+              ) {
                 this.formPartida = this.build.group({
                 token: [''],
                 })
-                
               }
-
-
 
   /**Recoge los cambios cuando se identifica un usuario o se desconecta el mismo y lo guarda */
   ngOnInit(): void {
@@ -49,7 +44,7 @@ export class DetallesComponent implements OnInit {
     this.cambios();
   }
 
-  
+
   cambios(){
     this.webSocket.cambiosEnPartida.subscribe(newPartida => {
       this.partida = newPartida;
@@ -94,6 +89,6 @@ export class DetallesComponent implements OnInit {
       , 1000)
     })
   }
-  
-  
+
+
 }
