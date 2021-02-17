@@ -72,7 +72,7 @@ export class LobbyComponent implements OnInit {
       this.partida = res;
       this.webSocket._connect(res.token);
       setTimeout(r => {
-        this.webSocket._send(res)
+        this.webSocket._send(res, res.token)
       },1000);
       console.log(res);
     })
@@ -84,7 +84,7 @@ export class LobbyComponent implements OnInit {
       this.webSocket._connect(res.token);
       console.log(res);
       setTimeout(r => {
-        this.webSocket._send(res)
+        this.webSocket._send(res, res.token)
       }
       , 1000)
     })
