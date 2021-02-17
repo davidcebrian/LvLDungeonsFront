@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { DetallesComponent } from './components/detalles/detalles.component';
+import { LobbyComponent } from './components/lobby/lobby.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { InicioComponent } from './components/inicio/inicio.component';
@@ -9,7 +9,7 @@ import { InicioComponent } from './components/inicio/inicio.component';
 const routes: Routes = [
   {path: 'inicio', redirectTo: '', pathMatch: 'full'},
   {path: '', component: InicioComponent},
-  {path: 'detalles', component: DetallesComponent},
+  {path: 'lobby', component: LobbyComponent},
   {path: 'login', component: LoginComponent},
   {path: 'registro', component: RegistroComponent},
 ];

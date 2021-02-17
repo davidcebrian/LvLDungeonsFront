@@ -22,7 +22,7 @@ export class RegistroComponent implements OnInit {
   mensaje:string;
   error:boolean = false;
 
-  constructor(private build: FormBuilder, private userService: DatabaseService, private router: Router, 
+  constructor(private build: FormBuilder, private userService: DatabaseService, private router: Router,
               private errorService: ErroresService) {}
 
   ngOnInit(): void {
@@ -42,7 +42,7 @@ export class RegistroComponent implements OnInit {
     return(formGroup: FormGroup) =>{
       const password = formGroup.controls[control];
       const repetir_password = formGroup.controls[control2];
-      
+
       if(!password || !repetir_password) return null
 
       if(repetir_password.errors && !repetir_password.errors.passwordMismatch) return null
@@ -55,7 +55,7 @@ export class RegistroComponent implements OnInit {
     }
   }
 
-  /**Sirve para crear  un usuario según los valores introducidos en el formulario, siempre y cuando 
+  /**Sirve para crear  un usuario según los valores introducidos en el formulario, siempre y cuando
    * estos sean válidos y el nickname y el correo no estén ya registrados en el sistema.
    */
   registro(): void{
@@ -77,7 +77,7 @@ export class RegistroComponent implements OnInit {
     error => {
       if(error != null){
         this.errorService.ErrorInesperado();  //muestra el error con sweetalert
-      } 
+      }
     }
     )
   }

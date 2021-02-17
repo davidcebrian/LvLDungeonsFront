@@ -20,7 +20,7 @@ export class WebSocketAPI {
     cambiosEnPartida = new EventEmitter<Partida>();
 
     constructor(private http: HttpClient){
-        
+
     }
 
     emitirCambiosPartida(): void{
@@ -37,7 +37,7 @@ export class WebSocketAPI {
                 console.log(sdkEvent)
                 _this.partida = JSON.parse(sdkEvent.body);
                 setTimeout(() => {
-                    this.emitirCambiosPartida()    
+                    this.emitirCambiosPartida()
                 },1000);
             });
             //_this.stompClient.reconnect_delay = 2000;
@@ -53,7 +53,7 @@ export class WebSocketAPI {
 
 	/**
 	 * Send message to sever via web socket
-	 * @param {*} message 
+	 * @param {*} message
 	 */
     _send(message, token: String) {
         console.log("calling logout api via web socket");

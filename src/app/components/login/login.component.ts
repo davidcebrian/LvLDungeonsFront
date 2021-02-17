@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   mensaje:string;
   error:boolean = false;
 
-  
+
   constructor(private router: Router, private autJwtService: AutJwtService,
     private dbService: DatabaseService, private errorService: ErroresService) { }
 
@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
         else if (data != undefined) {
           this.autJwtService.guardarJwt(data.jwt, data.id);
           if(localStorage.getItem("jwt") != ""){
-          this.errorService.LoginCorrecto('/detalles')
+          this.errorService.LoginCorrecto('/lobby')
           }else{
             localStorage.clear();
           }
@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
       error => {
         if(error != null){
           this.errorService.ErrorInesperado()
-        } 
+        }
       }
     )
   }
