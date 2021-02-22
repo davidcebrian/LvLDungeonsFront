@@ -64,8 +64,7 @@ export class LobbyComponent implements OnInit {
     this.idOwner = this.partida.idOwner;
 
     this.partida.personajes.forEach(pj => {
-      pj.id == this.idOwner
-      this.usernameOwner = pj.username
+      if(pj.id == this.idOwner) this.usernameOwner = pj.username
     })
 
     this.listo = false;
