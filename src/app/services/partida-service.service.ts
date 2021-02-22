@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class PartidaServiceService {
 
   private endP = '/personaje'
-  
+
   constructor( private http: HttpClient, private db: DatabaseService ) { }
 
   iniciarPartida(listoPartida:boolean, tokenPartida: String): Observable<Partida> {
@@ -46,6 +46,9 @@ export class PartidaServiceService {
     })
   }
 
-
-
+  salirPartida(): Observable<Partida> {
+    return this.http.put<Partida>(this.endP+'/'+localStorage.getItem('id') + '/exit', undefined).pipe(partida => {
+      return partida;
+    })
+  }
 }

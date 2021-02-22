@@ -32,7 +32,7 @@
 
     <div class="layout-flex-row m-3" *ngIf="this.partida != undefined && this.partida != null">
       <div class="w-1/5">
-        <button class="boton-home w-full" (click)="this.partida = undefined">Salir</button>
+        <button class="boton-home w-full" (click)="salirPartida()">Salir</button>
         <div class="tarjeta-contenedor w-full h-auto">
           <h2 class="tarjeta-subtitulo">Invita a tus amigos</h2>
           <p class="mx-8 text-center text-2xl font-extrabold">{{ partida.token }}</p>
@@ -62,8 +62,9 @@
             </div>
           </div>
           <div class="tarjeta-acciones-lobby">
-            <button *ngIf="!listo" class="boton-home" (click)="listoPartida()">Estoy Listo</button>
-            <button *ngIf="listo"class="boton-home" (click)="listoPartida()">No Estoy Listo</button>
+            <button *ngIf="!listo" class="boton-home mr-2" (click)="listoPartida()">Estoy Listo</button>
+            <button *ngIf="listo"class="boton-home mr-2" (click)="listoPartida()">No Estoy Listo</button>
+            <button *ngIf="imOwner" [class]=" todosListo ? 'boton-home' : 'boton-home boton-inactivo' ">Empezar partida</button>
           </div>
         </div>
       </div>

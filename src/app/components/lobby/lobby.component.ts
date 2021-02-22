@@ -19,7 +19,9 @@ export class LobbyComponent implements OnInit {
   partida: Partida = null;
   formPartida: FormGroup;
   listo:boolean = false;
+  todosListo: boolean = false;
   idOwner: number;
+  imOwner: boolean = false;
 
 
   constructor(private router:Router,
@@ -47,10 +49,20 @@ export class LobbyComponent implements OnInit {
     this.cambios();
   }
 
+  isTodosListos() {
+    this.partida.personajes.forEach(pj => {
+      let aux = true;
+      if (pj.empezarPartida == false) {
+        aux = false;
+      }
+      this.todosListo = aux;
+    })
+  }
 
   cambios(){
     this.webSocket.cambiosEnPartida.subscribe(newPartida => {
       this.partida = newPartida;
+      this.isTodosListos();
     })
   }
 
@@ -80,6 +92,8 @@ export class LobbyComponent implements OnInit {
 
       this.iniciarValoresPartida()
 
+      this.imOwner = true;
+
     })
   }
 
@@ -94,6 +108,8 @@ export class LobbyComponent implements OnInit {
 
       this.iniciarValoresPartida()
 
+      this.imOwner = false;
+
     })
   }
 
@@ -107,6 +123,22 @@ export class LobbyComponent implements OnInit {
         this.webSocket._send(res, res.token)
       }
       , 1000)
+    })
+  }
+
+  salirPartida(): void {
+    this.partidaService.salirPartida().subscribe(response => {
+      this.webSocket._send(response, response.token);
+
+      setTimeout(any => {
+        this.webSocket._disconnect();
+      });
+
+      this.partida = undefined;
+      this.imOwner = false;
+      this.idOwner = undefined;
+      this.listo = false;
+      this.todosListo = false;
     })
   }
 
