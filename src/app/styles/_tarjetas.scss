@@ -21,7 +21,7 @@
     @apply w-full;
     height: auto;
    }
-  @apply flex flex-col flex-no-wrap justify-between w-3/4 p-8 py-4 bg-white rounded shadow-xl op-92 border-black;
+  @apply flex flex-col flex-no-wrap justify-between  p-8 py-4 bg-white rounded shadow-xl op-92 border-black;
   height: fit-content;
 }
 
@@ -29,8 +29,12 @@
   @apply text-2xl font-semibold text-center;
 }
 
+.tarjeta-subtitulo {
+  @apply text-xl font-semibold text-center;
+}
+
 .tarjeta-contenido {
-  @apply flex-col flex-no-wrap  justify-between mt-8 text-justify text-base h-auto;
+  @apply flex flex-col flex-no-wrap  justify-between  text-justify text-base h-auto;
 }
 
 .tarjeta-contenido-titulo {
@@ -50,4 +54,24 @@
 
 .tarjeta-acciones {
   @apply flex flex-row flex-wrap justify-around w-full h-auto;
+}
+
+
+.tarjeta-contenido-dos-cols {
+  @apply flex flex-row flex-wrap justify-around text-justify text-base h-auto;
+}
+
+.tarjeta-acciones-columnas {
+  @apply flex justify-center items-end;
+}
+
+.contenedor-mini-tarjetas {
+  @apply w-full h-full flex flex-row flex-wrap justify-around items-center;
+}
+.mini-tarjeta {
+  @apply w-1/4 mt-8 mx-4 h-auto shadow-md flex flex-col flex-no-wrap justify-center items-center;
+}
+
+.tarjeta-acciones-lobby {
+  @apply mx-3 flex flex-row flex-no-wrap justify-end items-center pt-2;
 }

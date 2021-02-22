@@ -15,9 +15,12 @@ import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms'
 export class LobbyComponent implements OnInit {
 
   usuarioAutenticado: User;
-
+  usernameOwner: string;
   partida: Partida = null;
   formPartida: FormGroup;
+  listo:boolean = false;
+  idOwner: number;
+
 
   constructor(private router:Router,
               private dbService: DatabaseService,
@@ -27,7 +30,7 @@ export class LobbyComponent implements OnInit {
               private build: FormBuilder
               ) {
                 this.formPartida = this.build.group({
-                token: [''],
+                token: ['', [Validators.maxLength(6), Validators.minLength(6), Validators.required]],
                 })
               }
 
@@ -57,13 +60,27 @@ export class LobbyComponent implements OnInit {
     else return false;
   }
 
+  private iniciarValoresPartida() {
+    this.idOwner = this.partida.idOwner;
+
+    this.partida.personajes.forEach(pj => {
+      pj.id == this.idOwner
+      this.usernameOwner = pj.username
+    })
+
+    this.listo = false;
+  }
+
 
   crearPartida():void {
     this.partidaService.iniciarPartidaVoid().subscribe(res => {
       console.log(res);
-    this.partida = res;
-    console.log(this.partida.token);
-    this.webSocket._connect(this.partida.token);
+      this.partida = res;
+      console.log(this.partida.token);
+      this.webSocket._connect(this.partida.token);
+
+      this.iniciarValoresPartida()
+
     })
   }
 
@@ -75,14 +92,18 @@ export class LobbyComponent implements OnInit {
         this.webSocket._send(res, res.token)
       },1000);
       console.log(res);
+
+      this.iniciarValoresPartida()
+
     })
   }
 
   listoPartida():void {
-    this.partidaService.iniciarPartida(true, this.formPartida.controls.token.value).subscribe(res => {
+    this.partidaService.iniciarPartida(!this.listo, this.formPartida.controls.token.value).subscribe(res => {
       this.partida = res;
       this.webSocket._connect(res.token);
       console.log(res);
+      this.listo = !this.listo;
       setTimeout(r => {
         this.webSocket._send(res, res.token)
       }

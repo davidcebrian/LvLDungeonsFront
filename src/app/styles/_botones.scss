@@ -25,3 +25,8 @@
 .boton-home {
   @apply px-6 py-3 text-white font-light tracking-wider bg-gray-900 mt-4 mb-4 rounded;
 }
+
+.boton-inactivo {
+  @apply cursor-default bg-gray-600;
+}
+

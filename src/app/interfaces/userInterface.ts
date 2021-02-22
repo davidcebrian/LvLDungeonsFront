@@ -13,13 +13,13 @@ export interface User {
 	personaje?: String;
 }
 
-
 export interface Personaje {
 	vida?: number;
 	daño?: number;
 	energia?: number;
 	vivo?: boolean;
-	id?: number;
+  id?: number;
+  username?: string;
 	empezarPartida?: Boolean;
 }
 
@@ -27,6 +27,7 @@ export interface PersonajePartida{
 	listo?: boolean;
 	token?: String;
 }
+
 export interface Partida {
 	token: String;
 	personajes: Personaje[];

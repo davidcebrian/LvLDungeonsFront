@@ -188,3 +188,6 @@ input, textarea {
  }
 
 
+.layout-flex-row {
+  @apply flex flex-row flex-no-wrap justify-center items-start;
+}

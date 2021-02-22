@@ -1,30 +1,75 @@
 <!--Si existe usuario autenticado muestra esto -->
-<main>
-  <div *ngIf = "this.usuarioAutenticado != null && compruebaJwt() == true">
-      <h1>ESTÁS DENTRO {{this.usuarioAutenticado.username}} !!</h1>
+<main class="font-sans background mx-auto h-screen flex flex-1 justify-center items-center">
+  <div *ngIf="this.usuarioAutenticado != null && compruebaJwt() == true" class="h-full w-full">
+    <div class="mx-auto h-screen flex flex-1 justify-center items-center"
+      *ngIf="this.partida == undefined || this.partida == null">
+      <div class="tarjeta-contenedor w-3/4">
+        <div class="tarjeta-contenido-dos-cols">
+          <div class="tarjeta-contenido">
+            <div>
+              <h1 class="tarjeta-titulo">Crear una partida</h1>
+              <hr>
+            </div>
+            <div class="tarjeta-acciones-columnas">
+              <button class="boton-home" (click)="crearPartida()">Crear</button>
+            </div>
+          </div>
+          <div class="tarjeta-contenido">
+            <h1 class="tarjeta-titulo">Unirse a una partida</h1>
+            <hr>
+            <form [formGroup]="formPartida" action="">
+              <label class="labelFormulario" for="">Token de partida:</label>
 
-      <form [formGroup]='formPartida'>
-
-          <button class="btn-registroActivo" (click)='crearPartida()'>CREAR</button>
-          <input type="text" name="token" id="token" formControlName='token'>
-          <button class="btn-registroActivo"  (click)='unirsePartida()'>UNIRSE</button>
-          <button class="btn-registroActivo m-5" (click)='listoPartida()'>LISTO</button>
-      </form>
-
-
-      <div *ngIf="partida != null">
-          <p *ngFor="let personaje of partida.personajes">{{personaje.id}}, {{personaje.empezarPartida}}</p>
-          <br>
-          {{this.partida.iniciada}}
-          <br>
-          {{this.partida.token}}
-          <br>
-          {{this.partida.idOwner}}
+              <input [class]="this.formPartida.controls.token.invalid && this.formPartida.controls.token.value != '' ? 'inputInvalido' : 'inputValido'" type="text" placeholder="ABC123" formControlName="token">
+              <div class="tarjeta-acciones-columnas">
+                <button [disabled]="formPartida.invalid" (click)="unirsePartida()" [class]="formPartida.invalid ? 'boton-home boton-inactivo' : 'boton-home'">Unirse</button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
+    </div>
+
+    <div class="layout-flex-row m-3" *ngIf="this.partida != undefined && this.partida != null">
+      <div class="w-1/5">
+        <button class="boton-home w-full" (click)="this.partida = undefined">Salir</button>
+        <div class="tarjeta-contenedor w-full h-auto">
+          <h2 class="tarjeta-subtitulo">Invita a tus amigos</h2>
+          <p class="mx-8 text-center text-2xl font-extrabold">{{ partida.token }}</p>
+          <hr>
+          <br>
+          <p class="text-center">¡Solo tienes que mandarles el token a cada uno de ellos!</p>
+        </div>
+      </div>
+
+      <div *ngIf="this.partida != undefined && this.partida != null" class="w-4/5">
+        <div class="tarjeta-contenedor ml-8 mt-4">
+          <h1 class="tarjeta-titulo">Partida de {{usernameOwner}}</h1>
+          <hr>
+          <div class="contenedor-mini-tarjetas">
+            <div class="mini-tarjeta" *ngFor="let personaje of partida.personajes">
+              <h1 class="tarjeta-subtitulo">#{{personaje.id}} - {{personaje.username}} </h1>
+
+              <svg *ngIf="personaje.empezarPartida" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="green" width="48px" height="48px">
+                <path d="M0 0h24v24H0V0z" fill="none"/>
+                <path d="M19.77 5.03l1.4 1.4L8.43 19.17l-5.6-5.6 1.4-1.4 4.2 4.2L19.77 5.03m0-2.83L8.43 13.54l-4.2-4.2L0 13.57 8.43 22 24 6.43 19.77 2.2z"/>
+              </svg>
+
+              <svg *ngIf="!personaje.empezarPartida" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red" width="48px" height="48px"><path d="M0 0h24v24H0V0z" fill="none" opacity=".87"/>
+                <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.59-13L12 10.59 8.41 7 7 8.41 10.59 12 7 15.59 8.41 17 12 13.41 15.59 17 17 15.59 13.41 12 17 8.41z"/>
+              </svg>
+              <p>Estoy Listo!</p>
+            </div>
+          </div>
+          <div class="tarjeta-acciones-lobby">
+            <button *ngIf="!listo" class="boton-home" (click)="listoPartida()">Estoy Listo</button>
+            <button *ngIf="listo"class="boton-home" (click)="listoPartida()">No Estoy Listo</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-      <div id="cambio">
 
-      </div>
 
 
 <!--
@@ -32,13 +77,19 @@
     <li *ngFor="let personaje of partida.personajes"></li>
   </ul>
 -->
-  <!--Si no existe usuario autenticado muestra esto -->
-  <div *ngIf = "this.usuarioAutenticado == null && compruebaJwt() == false">
-      <h1>No tienes acceso! Ingresa desde <button class="btn btn-primary" routerLink="/login">AQUÍ</button></h1>
+
+<!--Si no existe usuario autenticado muestra esto -->
+  <div *ngIf="this.usuarioAutenticado == null && compruebaJwt() == false">
+    <h1>
+      No tienes acceso! Ingresa desde
+      <button class="btn btn-primary" routerLink="/login">
+        AQUÍ
+      </button>
+    </h1>
   </div>
   <!--
-      <tabla></tabla>
-      <formulario></formulario>
-  -->
+              <tabla></tabla>
+              <formulario></formulario>
+          -->
 
 </main>
