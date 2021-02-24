@@ -6,6 +6,7 @@ import { PartidaServiceService } from 'src/app/services/partida-service.service'
 import { WebSocketAPI } from 'src/app/services/ws/web-socket-api.service';
 import { Partida } from '../../interfaces/userInterface';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { ErroresService } from 'src/app/services/errores.service';
 
 @Component({
   selector: 'lobby',
@@ -30,7 +31,8 @@ export class LobbyComponent implements OnInit {
 
               private partidaService: PartidaServiceService,
               private webSocket: WebSocketAPI,
-              private build: FormBuilder
+              private build: FormBuilder,
+              private errores: ErroresService
               ) {
                 this.formPartida = this.build.group({
                 token: ['', [Validators.maxLength(6), Validators.minLength(6), Validators.required]],
@@ -100,17 +102,14 @@ export class LobbyComponent implements OnInit {
 
   crearPartida():void {
     this.partidaService.iniciarPartidaVoid().subscribe(res => {
-      console.log(res);
       this.partida = res;
-      console.log(this.partida.token);
       if(!this.connected) this.webSocket._connect(this.partida.token);
-
       this.iniciarValoresPartida()
-
       this.imOwner = true;
       this.connected = true;
       this.cambios();
-    })
+    }, 
+    () => this.errores.ErrorInesperado());
   }
 
   unirsePartida( ):void {
@@ -120,12 +119,14 @@ export class LobbyComponent implements OnInit {
       setTimeout(r => {
         this.webSocket._send(res, res.token)
       },1000);
-      console.log(res);
 
       this.iniciarValoresPartida()
       this.connected = true;
       this.imOwner = false;
       this.cambios();
+    },
+    () => {
+      this.errores.ErrorPersonalizado("Esa partida no existe.")
     })
   }
 
@@ -138,13 +139,18 @@ export class LobbyComponent implements OnInit {
         this.webSocket._send(res, res.token)
       }
       , 1000)
+    },
+    () => {
+      this.errores.ErrorInesperado();
     })
   }
 
   salirPartida(): void {
     this.partidaService.salirPartida().subscribe(response => {
       this.webSocket._send(response, response.token);
-    })
+    },
+    () => { this.errores.ErrorInesperado()});
+
     setTimeout(any => {
       this.webSocket._disconnect();
     },500);

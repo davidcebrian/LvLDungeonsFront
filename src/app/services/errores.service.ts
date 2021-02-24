@@ -24,6 +24,15 @@ export class ErroresService {
   })
 }
 
+ErrorPersonalizado(msg: string): any{
+  Swal.fire({
+    title: 'ERROR!',
+    text: msg,
+    icon: 'error',
+    confirmButtonText: 'OK'
+  })
+}
+
   RegistroCorrecto(ruta: String): any{
     Swal.fire({
       title: 'INFO!',
