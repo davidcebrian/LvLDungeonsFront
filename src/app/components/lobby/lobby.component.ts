@@ -51,19 +51,34 @@ export class LobbyComponent implements OnInit {
   }
 
   isTodosListos() {
-    this.partida.personajes.forEach(pj => {
-      let aux = true;
-      if (pj.empezarPartida == false) {
-        aux = false;
+
+    let listosCont = 0;
+
+    for(let personaje of this.partida.personajes) {
+      if (personaje.empezarPartida == true) {
+        listosCont++;
       }
-      this.todosListo = aux;
-    })
+    }
+
+    if (listosCont == this.partida.personajes.length) {
+      this.todosListo = true;
+    } else {
+      this.todosListo = false;
+    }
   }
 
   cambios(){
     this.webSocket.cambiosEnPartida.subscribe(newPartida => {
       this.partida = newPartida;
+
+      if (this.idOwner.toString() == localStorage.getItem('pj_id')) {
+        this.imOwner = true;
+      } else {
+        this.imOwner = false;
+      }
+
       this.isTodosListos();
+      this.iniciarValoresPartida();
     })
   }
 

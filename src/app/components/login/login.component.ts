@@ -46,8 +46,9 @@ export class LoginComponent implements OnInit {
         }
         else if (data != undefined) {
           this.autJwtService.guardarJwt(data.jwt, data.id);
+          localStorage.setItem('pj_id', data.pj_id);
           if(localStorage.getItem("jwt") != ""){
-          this.errorService.LoginCorrecto('/lobby')
+            this.errorService.LoginCorrecto('/lobby')
           }else{
             localStorage.clear();
           }
