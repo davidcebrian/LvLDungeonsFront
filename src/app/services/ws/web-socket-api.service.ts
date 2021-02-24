@@ -48,7 +48,6 @@ export class WebSocketAPI {
         if (this.stompClient !== null) {
             this.stompClient.disconnect();
         }
-        console.log("Disconnected");
     }
 
 	/**

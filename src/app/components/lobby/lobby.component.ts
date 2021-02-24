@@ -22,6 +22,7 @@ export class LobbyComponent implements OnInit {
   todosListo: boolean = false;
   idOwner: number;
   imOwner: boolean = false;
+  connected: boolean = false;
 
 
   constructor(private router:Router,
@@ -46,7 +47,7 @@ export class LobbyComponent implements OnInit {
         this.usuarioAutenticado = usuario;
       });
     }
-    this.cambios();
+    //this.cambios();
   }
 
   isTodosListos() {
@@ -88,36 +89,36 @@ export class LobbyComponent implements OnInit {
       console.log(res);
       this.partida = res;
       console.log(this.partida.token);
-      this.webSocket._connect(this.partida.token);
+      if(!this.connected) this.webSocket._connect(this.partida.token);
 
       this.iniciarValoresPartida()
 
       this.imOwner = true;
-
+      this.connected = true;
+      this.cambios();
     })
   }
 
   unirsePartida( ):void {
     this.partidaService.iniciarPartidaToken( this.formPartida.controls.token.value ).subscribe(res => {
       this.partida = res;
-      this.webSocket._connect(res.token);
+      if(!this.connected) this.webSocket._connect(res.token);
       setTimeout(r => {
         this.webSocket._send(res, res.token)
       },1000);
       console.log(res);
 
       this.iniciarValoresPartida()
-
+      this.connected = true;
       this.imOwner = false;
-
+      this.cambios();
     })
   }
 
   listoPartida():void {
     this.partidaService.iniciarPartida(!this.listo, this.formPartida.controls.token.value).subscribe(res => {
       this.partida = res;
-      this.webSocket._connect(res.token);
-      console.log(res);
+      if(!this.connected) this.webSocket._connect(res.token);
       this.listo = !this.listo;
       setTimeout(r => {
         this.webSocket._send(res, res.token)
@@ -129,17 +130,16 @@ export class LobbyComponent implements OnInit {
   salirPartida(): void {
     this.partidaService.salirPartida().subscribe(response => {
       this.webSocket._send(response, response.token);
-
-      setTimeout(any => {
-        this.webSocket._disconnect();
-      });
-
-      this.partida = undefined;
-      this.imOwner = false;
-      this.idOwner = undefined;
-      this.listo = false;
-      this.todosListo = false;
     })
+    setTimeout(any => {
+      this.webSocket._disconnect();
+    },500);
+    this.connected = false;
+    this.partida = undefined;
+    this.imOwner = false;
+    this.idOwner = undefined;
+    this.listo = false;
+    this.todosListo = false;
   }
 
 
