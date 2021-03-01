@@ -10,7 +10,7 @@ import { urls } from '../../environments/environment';
 })
 export class HttpInterceptorService implements HttpInterceptor{
 
-  url = urls.rizo;
+  url = urls.local;
 
   constructor(private autenticadorJwt: AutJwtService) { }
 

@@ -20,11 +20,11 @@ export class DatabaseService {
   @Output()
   cambiosEnUsuario = new EventEmitter<User>(); //Emite los cambios que hay en el usuario, de NO REGISTRADO a REGISTRADO, viceversa.. etc
 
-  constructor( private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   /**Para comprobar que existe el jwt del usuario que este autenticado */
-  compruebaJwt():boolean{
-    if(localStorage.getItem("jwt")!=null) return true;
+  compruebaJwt(): boolean {
+    if (localStorage.getItem("jwt") != null) return true;
     else return false;
   }
 
@@ -33,27 +33,27 @@ export class DatabaseService {
     const md5 = new Md5();
     const passMd5 = md5.appendStr(pass).end().toString();
 
-    return this.http.get(this.infoEndP + '?username='+ nick + '&password=' + passMd5).pipe(
+    return this.http.get(this.infoEndP + '?username=' + nick + '&password=' + passMd5).pipe(
       data => {
         return data;
       }
     )
   }
 
-  logout(){
+  logout() {
     this.usuarioAutenticado = null;
     this.emitirCambiosEnUsuario;
   }
 
   /**Recoge los datos del usuario autenticado y si ha registrado algún cambio y emite esos cambios */
-  getUsuarioAutenticado() : Observable<User> {
+  getUsuarioAutenticado(): Observable<User> {
     return this.http.get<User>(this.infoEndP + '/' + localStorage.getItem('id')).pipe(
       tap(userAutenticado => {
-        if((this.usuarioAutenticado == null && userAutenticado != null) ||
+        if ((this.usuarioAutenticado == null && userAutenticado != null) ||
           (this.usuarioAutenticado != null && userAutenticado == null) ||
           (this.usuarioAutenticado != null && userAutenticado != null && this.usuarioAutenticado.idUsuario != userAutenticado.idUsuario)) {
-            this.usuarioAutenticado = userAutenticado;
-            this.emitirCambiosEnUsuario();
+          this.usuarioAutenticado = userAutenticado;
+          this.emitirCambiosEnUsuario();
         }
       })
     );
@@ -65,7 +65,7 @@ export class DatabaseService {
   }
 
   /**Recoger usuario2 */
-  pruebaGetUsers( id: number): Observable<any> {
+  pruebaGetUsers(id: number): Observable<any> {
     return this.http.get(this.infoEndP + `/${id}`);
   }
 
@@ -75,7 +75,7 @@ export class DatabaseService {
   }
 
   /**Crerar un usuario con la contraseña codificada en md5 para guardarla en la base de datos */
-  createUser(user: any): Observable<any>{
+  createUser(user: any): Observable<any> {
     const md5 = new Md5();
     const passMd5 = md5.appendStr(user.password).end().toString();
     user.id = "";
@@ -85,18 +85,18 @@ export class DatabaseService {
   }
 
   /**Modifica un usuario según su id */
-  modificarUser(user: any): Observable<any>{
-    let id = user.id;
+  modificarUser(user: any): Observable<any> {
+    let id = localStorage.getItem('id');
     let json = JSON.stringify(user);
     const md5 = new Md5();
     const passMd5 = md5.appendStr(user.password).end().toString();
     user.password = passMd5;
-    return this.http.put(this.infoEndP + `/${id}`, user);
+    return this.http.put(this.infoEndP + `/update/${id}`, user);
   }
 
   /**Borrar un usuario */
-  borrarUser(user: any): Observable<any>{
-    let id = user.id;
-    return this.http.delete(this.infoEndP + `/${id}`);
+  borrarUser(user: any): Observable<any> {
+    let id = localStorage.getItem('id');
+    return this.http.delete(this.infoEndP + `/delete/${id}`);
   }
 }

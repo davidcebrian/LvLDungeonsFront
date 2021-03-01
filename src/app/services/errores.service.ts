@@ -10,30 +10,30 @@ import { Router } from '@angular/router';
 
 //servicio que sirve para cambiar valores a la hora de mostrar o no mostrar infos o errores
 export class ErroresService {
-  
+
   constructor(private router: Router) { }
 
 
   //modal errors
-  ErrorInesperado(): any{
-  Swal.fire({
-    title: 'ERROR!',
-    text: 'Ha ocurrido algo inesperado!',
-    icon: 'error',
-    confirmButtonText: 'OK'
-  })
-}
+  ErrorInesperado(): any {
+    Swal.fire({
+      title: 'ERROR!',
+      text: 'Ha ocurrido algo inesperado!',
+      icon: 'error',
+      confirmButtonText: 'OK'
+    })
+  }
 
-ErrorPersonalizado(msg: string): any{
-  Swal.fire({
-    title: 'ERROR!',
-    text: msg,
-    icon: 'error',
-    confirmButtonText: 'OK'
-  })
-}
+  ErrorPersonalizado(msg: string): any {
+    Swal.fire({
+      title: 'ERROR!',
+      text: msg,
+      icon: 'error',
+      confirmButtonText: 'OK'
+    })
+  }
 
-  RegistroCorrecto(ruta: String): any{
+  RegistroCorrecto(ruta: String): any {
     Swal.fire({
       title: 'INFO!',
       text: 'Registro completo. ¿Desea ir a log in?',
@@ -42,13 +42,13 @@ ErrorPersonalizado(msg: string): any{
       confirmButtonText: '¡Si!',
       denyButtonText: 'No',
     }).then(result => {
-      if(result.isConfirmed){
+      if (result.isConfirmed) {
         this.router.navigate([ruta]);
       }
     })
   }
 
-  LoginCorrecto(ruta: String): any{
+  LoginCorrecto(ruta: String): any {
     Swal.fire({
       title: '¡Log correcto!.',
       text: 'Entrando a página principal.',
@@ -59,12 +59,25 @@ ErrorPersonalizado(msg: string): any{
         this.router.navigate([ruta]);
       }
     }).then(result => {
-      if(result.dismiss === Swal.DismissReason.timer){
+      if (result.dismiss === Swal.DismissReason.timer) {
         this.router.navigate([ruta]);
       }
     })
   }
 
+  ActualizacionDatosCorrecta(): any {
+    Swal.fire({
+      title: '¡Datos actualizados con éxito!',
+      timer: 2000,
+      timerProgressBar: true
+    })
+  }
 
-  
+  EliminacionUserCorrecta(): any {
+    Swal.fire({
+      title: '¡Usuario eliminado con éxito!',
+      timer: 2000,
+      timerProgressBar: true
+    })
+  }
 }
